@@ -1,6 +1,6 @@
 ## I'm a web engineer with 14+ years of experience working with clients ranging from small businesses to large corporations.
 
-![Website](https://img.shields.io/website?label=leowebguy.com&style=for-the-badge&url=https://leowebguy.com)
+[![Website](https://img.shields.io/website?label=leowebguy.com&style=for-the-badge&url=https://leowebguy.com)](https://leowebguy.com)
 
 <br />
 
