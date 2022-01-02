@@ -1,6 +1,6 @@
 ## I'm a web engineer with 14+ years of experience working with clients ranging from small businesses to large corporations.
 
-[![Website](https://img.shields.io/website?label=leowebguy.com&style=for-the-badge&url=https%3A%2F%2Fleowebguy.com)](https://leowebguy.com)
+![Website](https://img.shields.io/website?label=leowebguy.com&style=for-the-badge&url=https://leowebguy.com)
 
 <br />
 
@@ -42,11 +42,11 @@ https://simpleicons.org/
 
 ### Connect
 
-[<img src="./svg/chrome.svg" alt="leowebguy.com">][website]
+<!--[<img src="./svg/chrome.svg" alt="leowebguy.com">][website]-->
 [<img src="./svg/linkedin.svg" alt="leowebguy | linkedin">][linkedin]
 [<img src="./svg/stackoverflow.svg" alt="leowebguy | stackoverflow">][stackoverflow]
 
-[website]: https://leowebguy.com
+<!--[website]: https://leowebguy.com-->
 [linkedin]: https://linkedin.com/in/leowebguy
 [stackoverflow]: https://stackoverflow.com/cv/leowebguy
 
