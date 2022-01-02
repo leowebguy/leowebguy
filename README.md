@@ -4,7 +4,7 @@
 
 <br />
 
-[<img src="./svg/php.svg" align="left" width="28px">][PHP]
+![PHP](./svg/php.svg)
 ![Craft CMS](./svg/craftcms.svg)
 ![Laravel](./svg/laravel.svg)
 ![WordPress](./svg/wp.svg)
@@ -49,12 +49,6 @@ https://simpleicons.org/
 [website]: https://leowebguy.com
 [linkedin]: https://linkedin.com/in/leowebguy
 [stackoverflow]: https://stackoverflow.com/cv/leowebguy
-
-<style>
-.markdown-body img {
-    margin-right: 4px;
-}
-</style>
 
 <!--
 <details>
