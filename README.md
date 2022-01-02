@@ -50,6 +50,12 @@ https://simpleicons.org/
 [linkedin]: https://linkedin.com/in/leowebguy
 [stackoverflow]: https://stackoverflow.com/cv/leowebguy
 
+<style>
+.markdown-body img {
+    margin-right: 4px;
+}
+</style>
+
 <!--
 <details>
   <summary>:zap: Recent GitHub Activity</summary>
