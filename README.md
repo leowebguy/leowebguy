@@ -42,6 +42,7 @@ https://simpleicons.org/
 
 ### Connect
 
+[<img src="./svg/chrome.svg" alt="leowebguy.com">][website]
 [<img src="./svg/linkedin.svg" alt="leowebguy | linkedin">][linkedin]
 [<img src="./svg/stackoverflow.svg" alt="leowebguy | stackoverflow">][stackoverflow]
 
