@@ -4,7 +4,7 @@
 
 <br />
 
-![PHP](./svg/php.svg)
+[<img src="./svg/php.svg" align="left" width="28px">][PHP]
 ![Craft CMS](./svg/craftcms.svg)
 ![Laravel](./svg/laravel.svg)
 ![WordPress](./svg/wp.svg)
