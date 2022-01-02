@@ -4,6 +4,8 @@
 
 <br />
 
+<img src="./svg/php.svg">
+
 ![PHP](./svg/php.svg)
 ![Craft CMS](./svg/craftcms.svg)
 ![Laravel](./svg/laravel.svg)
