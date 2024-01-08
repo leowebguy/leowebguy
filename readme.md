@@ -14,7 +14,6 @@
 ![AWS](./docs/svg/aws.svg "AWS")
 ![Apache](./docs/svg/apache.svg "Apache")
 ![Github](./docs/svg/github.svg "Github")
-![Terminal](./docs/svg/terminal.svg "Terminal")
 ![Bash](./docs/svg/bash.svg "Bash")
 ![MySQL](./docs/svg/mysql.svg "MySQL")
 ![PostgreSQL](./docs/svg/postgre.svg "PostgreSQL")
