@@ -1,4 +1,4 @@
-## I'm a <u>senior web engineer</u> and a <u>craft cms expert</u> with 14+ yrs of experience working with clients ranging from small businesses to large corporations.
+# I'm a <u>senior web engineer</u> and a <u>craft cms expert</u> with 14+ yrs of experience working with clients ranging from small businesses to large corporations.
 
 &nbsp;
 
@@ -41,13 +41,9 @@
 
 🌱 Check out my [plugins](https://plugins.craftcms.com/developer/leowebguy?craft4)
 
-[![linkedin](./docs/svg/linkedin.svg)](https://linkedin.com/in/leowebguy)&nbsp;&nbsp;[![stackoverflow](./docs/svg/stackoverflow.svg)](https://stackoverflow.com/users/3058927/leo-leoncio)
-
 <!--
-[<img src="./docs/svg/linkedin.svg" alt="leowebguy | linkedin">][linkedin]
-[<img src="./docs/svg/chrome.svg" alt="leowebguy.com">][website]
-[<img src="./docs/svg/stackoverflow.svg" alt="leowebguy | stackoverflow">][stackoverflow
-[linkedin]: https://linkedin.com/in/leowebguy
+
+[![linkedin](./docs/svg/linkedin.svg)](https://linkedin.com/in/leowebguy)&nbsp;&nbsp;[![stackoverflow](./docs/svg/stackoverflow.svg)](https://stackoverflow.com/users/3058927/leo-leoncio)
 
 **leowebguy/leowebguy** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 

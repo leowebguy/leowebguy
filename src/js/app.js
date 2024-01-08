@@ -20,11 +20,20 @@ import axios from 'axios';
     // Events
     listen(btnContact, 'click', () => {
         (new Modal(modalContact)).show();
+
+        dataLayer.push({
+            'event': 'Modal open btn'
+        });
+
         return;
     });
 
     if (query && query.has('contact')) {
         (new Modal(modalContact)).show();
+
+        dataLayer.push({
+            'event': 'Modal open url'
+        });
     }
 
     listen(document, 'readystatechange', () => {
@@ -56,9 +65,8 @@ import axios from 'axios';
                     formSubmit.classList.add('d-none');
                     formSuccess.classList.remove('d-none');
 
-                    // dataLayer declared via head
-                    window.dataLayer.push({
-                        'event': 'Form Submitted'
+                    dataLayer.push({
+                        'event': 'Form'
                     });
 
                 } else {
@@ -68,6 +76,10 @@ import axios from 'axios';
                     formError.classList.remove('d-none');
 
                     console.error(r.data.message);
+
+                    dataLayer.push({
+                        'event': 'Form error'
+                    });
                 }
             })
             .catch((err) => {
@@ -77,6 +89,10 @@ import axios from 'axios';
                 formError.classList.remove('d-none');
 
                 console.error(err);
+
+                dataLayer.push({
+                    'event': 'Form error'
+                });
             });
     });
 })();
