@@ -85,10 +85,10 @@ if (mix.inProduction()) {
             // });
         })
 
-        .purgeCss({
-            content: [`${pkg.paths.src}/**/*.hbs`],
-            whitelistPatterns: [/d-$/, /modal-$/, /fade/, /show/]
-        })
+        // .purgeCss({
+        //     content: [`${pkg.paths.src}/**/*.hbs`],
+        //     whitelistPatterns: [/d-$/, /modal-$/, /fade/, /show/]
+        // })
 
         .compress()
 
