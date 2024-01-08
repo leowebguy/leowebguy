@@ -36,6 +36,7 @@ mix
         //     ]
         // },
         devServer: {
+            server: 'https',
             host: 'localhost',
             port: 8080,
             https: {
