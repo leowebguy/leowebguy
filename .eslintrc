@@ -1,0 +1,87 @@
+{
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "requireConfigFile": false
+  },
+  "extends": [
+    "prettier",
+    "eslint:recommended"
+  ],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "indent": "off",
+    "template-curly-spacing": "off",
+    "no-useless-escape": 0,
+    "quotes": [
+      2,
+      "single",
+      {
+        "allowTemplateLiterals": true
+      }
+    ],
+    "new-cap": [
+      "warn",
+      {
+        "properties": false
+      }
+    ],
+    "no-unused-vars": [
+      "off"
+    ],
+    "no-multiple-empty-lines": [
+      "warn",
+      {
+        "max": 1,
+        "maxEOF": 0,
+        "maxBOF": 0
+      }
+    ],
+    "no-irregular-whitespace": 1,
+    "no-trailing-spaces": 1,
+    "space-before-function-paren": [
+      "warn",
+      "never"
+    ],
+    "no-multi-spaces": 1,
+    "no-undef": 0,
+    "no-console": 0,
+    "no-new": 0,
+    "unicorn/filename-case": 0,
+    "unicorn/explicit-length-check": 0,
+    "import/no-unassigned-import": 0,
+    "import/default": 0,
+    "no-alert": 0,
+    "no-prototype-builtins": 0
+  },
+  "ignorePatterns": [
+    "temp.js",
+    "node_modules/",
+    "src/js/lib/",
+    "tasks/",
+    "bin/*.js",
+    "lib/*.js",
+    "*.test.js",
+    "*.test.jsx"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "bin/*.js",
+        "lib/*.js"
+      ],
+      "excludedFiles": [
+        "*.test.js"
+      ],
+      "rules": {
+        "quotes": [
+          2,
+          "single"
+        ]
+      }
+    }
+  ]
+}

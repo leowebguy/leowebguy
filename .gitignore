@@ -1,0 +1,49 @@
+# protected
+.env
+/auth.json
+
+# certs
+/cert/*
+
+# ddev
+/.ddev/*
+!/.ddev/config.yaml
+!/.ddev/docker-compose.browsersync.yaml
+
+# npm
+/node_modules
+
+# public/docs
+#/docs/**/*
+#!/docs/img
+#!/docs/img/**
+#!/docs/svg
+#!/docs/svg/**
+#!/docs/CNAME
+#!/docs/favicon.ico
+
+# ide
+.vscode
+.idea
+
+# thumbnails
+._*
+
+# zip/gz
+/**/*.zip
+/**/*.tar
+/**/*.gz
+
+# misc
+*.sass-cache
+*.cache
+*.php_cs.cache
+*.DS_Store
+*.project
+*.settings
+*.esproj
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+*.tmproj
+*.tmproject

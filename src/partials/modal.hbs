@@ -1,0 +1,46 @@
+<div class="modal fade" id="{{ id }}" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form name="contact">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Get in touch!</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <fieldset>
+                        {{!-- <input type="hidden" name="utm_id" value="">
+                        <input type="hidden" name="utm_campaign" value="">
+                        <input type="hidden" name="utm_content" value="">
+                        <input type="hidden" name="utm_medium" value="">
+                        <input type="hidden" name="utm_source" value="">
+                        <input type="hidden" name="utm_term" value=""> --}}
+                        <input type="hidden" name="hiddenRecaptcha" value="">
+                        <div class="mb-3">
+                            <input type="text" name="name" class="form-control" placeholder="Name (required)" maxlength="60" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" name="email" class="form-control" placeholder="Email (required)" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="tel" name="phone" class="form-control" placeholder="Phone">
+                        </div>
+                        <div class="mb-3">
+                        <textarea name="msg" class="form-control" rows="4"
+                                  placeholder="Your message here (required)" maxlength="255" required></textarea>
+                        </div>
+                    </fieldset>
+                    <div class="alert alert-success success d-none w-100 mb-0">
+                        Thanks for your message!<br>I'll reach out as soon as possible.
+                    </div>
+                    <div class="alert alert-warning d-none w-100 mb-0">
+                        Sorry, something went wrong.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

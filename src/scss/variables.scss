@@ -1,0 +1,40 @@
+// Options
+//$enable-caret: false !default;
+//$enable-shadows: true !default;
+$enable-rfs: false !default;
+//$enable-validation-icons: false !default;
+//$enable-negative-margins: true !default;
+$enable-dark-mode: false !default;
+//$transition-standard-time: 0.25s !default;
+$min-contrast-ratio: 3 !default;
+
+// Colors
+$primary: #A00 !default;
+//$secondary: #0dcaf0 !default;
+//$tertiary: #20c997 !default;
+
+// Radius
+$border-radius: 0 !default;
+$border-radius-sm: 0 !default;
+$border-radius-lg: 0 !default;
+
+// Buttons
+$btn-padding-y: .5rem !default;
+$btn-padding-x: 1rem !default;
+
+// Spacing
+$spacer: 1rem !default;
+$spacers: (
+    0: 0,
+    1: $spacer * .25,
+    2: $spacer * .5,
+    3: $spacer,
+    4: $spacer * 1.5,
+    5: $spacer * 3,
+    6: $spacer * 5,
+    7: $spacer * 7.5,
+    8: $spacer * 10
+) !default;
+
+// Modal
+$modal-md: 640px !default;
