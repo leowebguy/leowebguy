@@ -1,4 +1,4 @@
-# I'm a <u>senior web engineer</u> and a <u>craft cms expert</u> with 14+ yrs of experience working with clients ranging from small businesses to large corporations.
+# I'm a <ins>senior web engineer</ins> and a <ins>craft cms expert</ins> with 14+ yrs of experience working with clients ranging from small businesses to large corporations.
 
 &nbsp;
 
