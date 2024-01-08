@@ -27,18 +27,15 @@
     "fs-extra": "^11.2.0",
     "git-rev-sync": "^3.0.2",
     "handlebars-webpack-plugin": "^2.2.1",
-    "i": "^0.3.7",
     "laravel-mix": "^6.0",
     "laravel-mix-banner": "^0.1",
     "laravel-mix-compress": "^3.0",
     "laravel-mix-purgecss": "^6.0",
-    "npm": "^10.2.5",
     "npm-check-updates": "^16.14",
     "path": "^0.12.7",
-    "resolve-url-loader": "^5.0",
     "sass": "^1.69",
     "sass-loader": "^13.3",
-    "webpack-cli": "^5.1"
+    "webpack-cli": "^5.1.4"
   },
   "//": {
     "laravel-mix-bundle-analyzer": "^1.0.5",
