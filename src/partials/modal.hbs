@@ -2,9 +2,9 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form name="contact">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5">Get in touch!</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header bg-secondary">
+                    <h1 class="modal-title fs-5 text-dark">Get in touch!</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>{{!-- btn-close-white --}}
                 </div>
                 <div class="modal-body">
                     <fieldset>
@@ -35,11 +35,14 @@
                     <div class="alert alert-warning d-none w-100 mb-0">
                         Sorry, something went wrong.
                     </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-secondary">Send</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
+                {{!-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Send</button>
-                </div>
+                </div> --}}
             </form>
         </div>
     </div>
