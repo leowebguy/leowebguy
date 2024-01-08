@@ -21,6 +21,7 @@
 #!/docs/svg/**
 #!/docs/CNAME
 #!/docs/favicon.ico
+/docs/hot
 
 # ide
 .vscode

@@ -35,15 +35,15 @@ mix
         //         pkg.paths.npm
         //     ]
         // },
-        // devServer: {
-        //     host: 'localhost',
-        //     port: 8080,
-        //     https: {
-        //         cert: fs.readFileSync('./cert/cert.pem'),
-        //         key: fs.readFileSync('./cert/key.pem')
-        //     },
-        //     liveReload: true
-        // },
+        devServer: {
+            host: 'localhost',
+            port: 8080,
+            https: {
+                cert: fs.readFileSync('./cert/cert.pem'),
+                key: fs.readFileSync('./cert/key.pem')
+            },
+            liveReload: true
+        },
         plugins: [
             new handlebars({
                 entry: path.join(__dirname, pkg.paths.src, '*.hbs'),
@@ -86,7 +86,7 @@ if (mix.inProduction()) {
 
         .purgeCss({
             content: [`${pkg.paths.src}/**/*.hbs`],
-            whitelistPatterns: [/d-$/, /modal-open/, /modal-backdrop/, /fade/, /show/]
+            whitelistPatterns: [/d-$/, /modal-$/, /fade/, /show/]
         })
 
         .compress()
