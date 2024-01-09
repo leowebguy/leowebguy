@@ -32,16 +32,17 @@ mix
     .webpackConfig({
         // resolve: {
         //     modules: [
-        //         pkg.paths.npm
+        //         path.join(__dirname, pkg.paths.npm)
         //     ]
         // },
         devServer: {
-            server: 'https',
+            // open: true,
+            // server: 'https',
             host: 'localhost',
             port: 8080,
             https: {
-                cert: fs.readFileSync('./cert/cert.pem'),
-                key: fs.readFileSync('./cert/key.pem')
+                cert: fs.readFileSync(path.join(__dirname, pkg.paths.ssl, 'cert.pem')),
+                key: fs.readFileSync(path.join(__dirname, pkg.paths.ssl, 'key.pem'))
             },
             liveReload: true
         },
@@ -77,12 +78,14 @@ if (mix.inProduction()) {
     mix
 
         .before(() => {
-            fs.copySync(`${pkg.paths.npm}/bootstrap-icons/font/fonts`, `${pkg.paths.public}/fonts/bi`, {
-                overwrite: false
-            });
-            // fs.copySync(`${pkg.paths.src}/svg`, `${pkg.paths.public}/svg`, {
-            //     overwrite: false
-            // });
+            fs.copySync(
+                path.join(__dirname, pkg.paths.npm, 'bootstrap-icons/font/fonts'),
+                path.join(__dirname, pkg.paths.public, 'fonts/bi')
+            );
+            // fs.copySync(
+            //     path.join(__dirname, pkg.paths.src, 'svg'),
+            //     path.join(__dirname, pkg.paths.public, 'svg')
+            // );
         })
 
         // .purgeCss({

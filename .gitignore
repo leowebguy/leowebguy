@@ -3,7 +3,7 @@
 /auth.json
 
 # certs
-/cert/*
+/.ssl
 
 # ddev
 /.ddev/*

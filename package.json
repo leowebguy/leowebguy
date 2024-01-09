@@ -11,7 +11,8 @@
   },
   "paths": {
     "base": ".",
-    "npm": "./node_modules",
+    "npm": "node_modules",
+    "ssl": ".ssl",
     "src": "src",
     "public": "docs"
   },
@@ -48,8 +49,9 @@
     "prod": "mix --production",
     "ncu": "ncu",
     "ncuu": "ncu -u",
-    "mkcert": "mkcert -key-file ./cert/key.pem -cert-file ./cert/cert.pem localhost 127.0.0.1",
-    "install": "node setup.js"
+    "mkcert": "mkdir ./.ssl && mkcert -key-file ./.ssl/key.pem -cert-file ./.ssl/cert.pem localhost 127.0.0.1",
+    "install": "node setup.js",
+    "merge": "git checkout dev && git push . HEAD:main && git push origin main:main"
   },
   "engines": {
     "node": ">= 18",
