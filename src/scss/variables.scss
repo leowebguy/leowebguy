@@ -17,8 +17,8 @@ $secondary: #e8ca77 !default;
 
 // Radius
 $border-radius: 0 !default;
-//$border-radius-sm: 0 !default;
-//$border-radius-lg: 0 !default;
+$border-radius-sm: $border-radius;
+$border-radius-lg: $border-radius;
 
 // Buttons
 $btn-padding-y: .5rem !default;
