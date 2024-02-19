@@ -24,6 +24,15 @@ $border-radius-lg: $border-radius;
 $btn-padding-y: .5rem !default;
 $btn-padding-x: 1rem !default;
 
+// Container
+$container-max-widths: (
+    sm: 440px,
+    md: 560px,
+    lg: 720px,
+    xl: 960px,
+    xxl: 1140px
+) !default;
+
 // Spacing
 $spacer: 1rem !default;
 $spacers: (

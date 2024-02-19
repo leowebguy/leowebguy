@@ -13,17 +13,17 @@ import { load } from 'recaptcha-v3';
     const fieldset = qs('fieldset', form);
     const success = qs('.success', form);
     const warning = qs('.warning', form);
-    const submit = qs('button[type=submit]', form);
 
     const query = new URLSearchParams(window.location.search);
 
     // Recaptcha
-    load(process.env.MIX_RECAPTCHA_KEY)
-        .then((recaptcha) => {
-            recaptcha.execute('submit').then((token) => {
-                setAtt(captcha, 'value', token);
-            });
+    load(process.env.MIX_RECAPTCHA_KEY, {
+        autoHideBadge: true
+    }).then((recaptcha) => {
+        recaptcha.execute('submit').then((token) => {
+            setAtt(captcha, 'value', token);
         });
+    });
 
     // Btn modal open
     listen(contact, 'click', () => {
@@ -58,7 +58,6 @@ import { load } from 'recaptcha-v3';
                 if (r.data.result) {
                     form.reset();
                     fieldset.classList.add('d-none');
-                    submit.classList.add('d-none');
                     success.classList.remove('d-none');
                     dataLayer.push({
                         'event': 'Form'
