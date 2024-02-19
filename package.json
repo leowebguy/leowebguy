@@ -16,12 +16,13 @@
     "src": "src",
     "public": "docs"
   },
-  "license": "MIT",
+  "license": "proprietary",
   "dependencies": {
     "@popperjs/core": "^2.11",
     "axios": "^1.6",
     "bootstrap": "^5.3",
-    "bootstrap-icons": "^1.11"
+    "bootstrap-icons": "^1.11",
+    "recaptcha-v3": "^1.10.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4",
@@ -34,8 +35,8 @@
     "laravel-mix-purgecss": "^6.0",
     "npm-check-updates": "^16.14",
     "path": "^0.12",
-    "sass": "^1.69",
-    "sass-loader": "^13.3",
+    "sass": "^1.71",
+    "sass-loader": "^14.1",
     "webpack-cli": "^5.1"
   },
   "//": {
@@ -50,7 +51,7 @@
     "ncu": "ncu",
     "ncuu": "ncu -u",
     "mkcert": "mkdir ./.ssl && mkcert -key-file ./.ssl/key.pem -cert-file ./.ssl/cert.pem localhost 127.0.0.1",
-    "install": "node setup.js",
+    "setup": "node setup.js",
     "merge": "git checkout dev && git push . HEAD:main && git push origin main:main"
   },
   "engines": {

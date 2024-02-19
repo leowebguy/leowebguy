@@ -1,95 +1,79 @@
 import { listen, qs, setAtt } from './helpers';
 import { Modal } from 'bootstrap';
 import axios from 'axios';
+import { load } from 'recaptcha-v3';
 
 (() => {
     // Variables
-    const btnContact = qs('.contact');
-    const modalContact = qs('#contact');
+    const contact = qs('.contact');
+    const modal = qs('#contact');
     const captcha = qs('[name=hiddenRecaptcha]');
-    const captchaBadge = qs('.grecaptcha-badge');
 
     const form = qs('form[name=contact]');
-    const formFieldset = qs('fieldset', form);
-    const formSuccess = qs('.alert-success', form);
-    const formError = qs('.alert-warning', form);
-    const formSubmit = qs('button[type=submit]', form);
+    const fieldset = qs('fieldset', form);
+    const success = qs('.success', form);
+    const warning = qs('.warning', form);
+    const submit = qs('button[type=submit]', form);
 
     const query = new URLSearchParams(window.location.search);
 
-    // Events
-    listen(btnContact, 'click', () => {
-        (new Modal(modalContact)).show();
+    // Recaptcha
+    load(process.env.MIX_RECAPTCHA_KEY)
+        .then((recaptcha) => {
+            recaptcha.execute('submit').then((token) => {
+                setAtt(captcha, 'value', token);
+            });
+        });
 
+    // Btn modal open
+    listen(contact, 'click', () => {
+        (new Modal(modal)).show();
         dataLayer.push({
             'event': 'Modal open btn'
         });
-
         return;
     });
 
+    // Url modal open
     if (query && query.has('contact')) {
-        (new Modal(modalContact)).show();
-
+        (new Modal(modal)).show();
         dataLayer.push({
             'event': 'Modal open url'
         });
     }
 
-    listen(document, 'readystatechange', () => {
-        if (document.readyState === 'complete' && grecaptcha.ready) {
-            grecaptcha
-                .execute('6Lfe55gUAAAAALT63VWPk0DsLRlh-cK77Bv0QkVL')
-                .then((token) => {
-                    setAtt(captcha, 'value', token);
-                });
-        }
-    });
-
+    // Form submit
     listen(form, 'submit', (e) => {
         e.preventDefault();
         const data = new FormData();
         data.append('subj', 'leowebguy | contact');
-        data.append('to', 'leowebguy@gmail.com');
+        data.append('to', process.env.MIX_EMAIL_TO || 'leowebguy@gmail.com');
         data.append('bcc', null); // do not bcc myself
         data.append('name', qs('[name=name]', form).value || '');
         data.append('phone', qs('[name=phone]', form).value || '');
         data.append('from', qs('[name=email]', form).value);
         data.append('msg', qs('[name=msg]', form).value);
-
         axios.post('https://api.gaunte.com/sendmail/', data)
             .then((r) => {
                 if (r.data.result) {
                     form.reset();
-                    formFieldset.classList.add('d-none');
-                    formSubmit.classList.add('d-none');
-                    formSuccess.classList.remove('d-none');
-
+                    fieldset.classList.add('d-none');
+                    submit.classList.add('d-none');
+                    success.classList.remove('d-none');
                     dataLayer.push({
                         'event': 'Form'
                     });
-
                 } else {
-                    // form.reset();
-                    // formFieldset.classList.add('d-none');
-                    // formSubmit.classList.add('d-none');
-                    formError.classList.remove('d-none');
-
+                    warning.classList.remove('d-none');
                     console.error(r.data.message);
-
                     dataLayer.push({
                         'event': 'Form error'
                     });
                 }
             })
             .catch((err) => {
-                // form.reset();
-                // formFieldset.classList.add('d-none');
-                // formSubmit.classList.add('d-none');
-                formError.classList.remove('d-none');
-
+                warning.classList.remove('d-none');
                 console.error(err);
-
                 dataLayer.push({
                     'event': 'Form error'
                 });

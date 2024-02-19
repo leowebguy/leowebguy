@@ -8,31 +8,31 @@
                 </div>
                 <div class="modal-body">
                     <fieldset>
-                        {{!-- <input type="hidden" name="utm_id" value="">
+                        {{!--<input type="hidden" name="utm_id" value="">
                         <input type="hidden" name="utm_campaign" value="">
                         <input type="hidden" name="utm_content" value="">
                         <input type="hidden" name="utm_medium" value="">
                         <input type="hidden" name="utm_source" value="">
-                        <input type="hidden" name="utm_term" value=""> --}}
+                        <input type="hidden" name="utm_term" value="">--}}
                         <input type="hidden" name="hiddenRecaptcha" value="">
                         <div class="mb-3">
-                            <input type="text" name="name" class="form-control" placeholder="Name (required)" maxlength="60" required>
+                            <input type="text" name="name" class="form-control" placeholder="Name (required)" maxlength="60" autocomplete="name" required>
                         </div>
                         <div class="mb-3">
-                            <input type="email" name="email" class="form-control" placeholder="Email (required)" required>
+                            <input type="email" name="email" class="form-control" placeholder="Email (required)" autocomplete="email" required>
                         </div>
                         <div class="mb-3">
-                            <input type="tel" name="phone" class="form-control" placeholder="Phone">
+                            <input type="tel" name="phone" class="form-control" placeholder="Phone" autocomplete="tel">
                         </div>
                         <div class="mb-3">
                         <textarea name="msg" class="form-control" rows="4"
                                   placeholder="Your message here (required)" maxlength="255" required></textarea>
                         </div>
                     </fieldset>
-                    <div class="alert alert-success success d-none w-100">
+                    <div class="alert alert-light success d-none w-100">
                         Thanks for your message!<br>I'll reach out as soon as possible.
                     </div>
-                    <div class="alert alert-warning d-none w-100">
+                    <div class="alert alert-warning warning d-none w-100">
                         Sorry, something went wrong.
                     </div>
                     <div class="d-flex justify-content-end">

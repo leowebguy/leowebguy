@@ -23,8 +23,9 @@ mix
         processCssUrls: false,
         autoprefixer: {
             enabled: true,
-            options: {remove: false}
-        }
+            options: { remove: false }
+        },
+        runtimeChunkPath: 'js'
     })
 
     // .before()
@@ -51,6 +52,8 @@ mix
                 entry: path.join(__dirname, pkg.paths.src, '*.hbs'),
                 output: path.join(__dirname, pkg.paths.public, '[name].html'),
                 data: {
+                    manifestJs: manifest['/js/manifest.js'] || '/js/manifest.js',
+                    vendorJs: manifest['/js/vendor.js'] || '/js/vendor.js',
                     mixJs: manifest['/js/app.js'] || '/js/app.js',
                     mixCss: manifest['/css/app.css'] || '/css/app.css'
                 },
@@ -68,6 +71,8 @@ mix
     .js(`${pkg.paths.src}/js/app.js`, `${pkg.paths.public}/js/app.js`)
 
     .sass(`${pkg.paths.src}/scss/app.scss`, `${pkg.paths.public}/css/app.css`)
+
+    .extract()
 
     .version()
 

@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/fav/favicon-16x16.png">
     <link rel="manifest" href="/fav/manifest.json">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="/css/app.css?id=ed87644557970464164d597eba7270e9"/>
+    <link rel="stylesheet" href="/css/app.css"/>
     <script src="https://google.com/recaptcha/api.js?render=6Lfe55gUAAAAALT63VWPk0DsLRlh-cK77Bv0QkVL" async></script>
     <script src="https://googletagmanager.com/gtag/js?id=G-1S5HJ831QP" async></script>
     <script>
@@ -114,23 +114,23 @@
                         <fieldset>
                             <input type="hidden" name="hiddenRecaptcha" value="">
                             <div class="mb-3">
-                                <input type="text" name="name" class="form-control" placeholder="Name (required)" maxlength="60" required>
+                                <input type="text" name="name" class="form-control" placeholder="Name (required)" maxlength="60" autocomplete="name" required>
                             </div>
                             <div class="mb-3">
-                                <input type="email" name="email" class="form-control" placeholder="Email (required)" required>
+                                <input type="email" name="email" class="form-control" placeholder="Email (required)" autocomplete="email" required>
                             </div>
                             <div class="mb-3">
-                                <input type="tel" name="phone" class="form-control" placeholder="Phone">
+                                <input type="tel" name="phone" class="form-control" placeholder="Phone" autocomplete="tel">
                             </div>
                             <div class="mb-3">
                             <textarea name="msg" class="form-control" rows="4"
                                       placeholder="Your message here (required)" maxlength="255" required></textarea>
                             </div>
                         </fieldset>
-                        <div class="alert alert-success success d-none w-100">
+                        <div class="alert alert-light success d-none w-100">
                             Thanks for your message!<br>I'll reach out as soon as possible.
                         </div>
-                        <div class="alert alert-warning d-none w-100">
+                        <div class="alert alert-warning warning d-none w-100">
                             Sorry, something went wrong.
                         </div>
                         <div class="d-flex justify-content-end">
@@ -141,6 +141,8 @@
             </div>
         </div>
     </div>
-    <script src="/js/app.js?id=6c311d46bb5a808b7702211757b23d84"></script>
+    <script src="/js/manifest.js"></script>
+    <script src="/js/vendor.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>
