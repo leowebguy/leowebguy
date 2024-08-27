@@ -1,4 +1,4 @@
-# Web engineer, Craft CMS expert with 14+ yrs of experience working with clients ranging from small businesses to large corporations 
+# Web engineer, Craft CMS expert with 14+ yrs of experience working with clients ranging from small businesses to large corporations.
 
 &nbsp;
 
