@@ -1,4 +1,4 @@
-# I'm a <ins>senior web engineer</ins> and a <ins>craft cms expert</ins> with 14+ yrs of experience working with clients ranging from small businesses to large corporations.
+# Web engineer, Craft CMS expert with 14+ yrs of experience working with clients ranging from small businesses to large corporations 
 
 &nbsp;
 
@@ -19,18 +19,15 @@
 ![PostgreSQL](./docs/svg/postgre.svg "PostgreSQL")
 ![MariaDB](./docs/svg/mariadb.svg "MariaDB")
 
-![HTML5](./docs/svg/html5.svg "HTML5")
-![CSS3](./docs/svg/css3.svg "CSS3")
-![Sass](./docs/svg/sass.svg "Sass")
-![JavaScript](./docs/svg/js.svg "JavaScript")
-![jQuery](./docs/svg/jquery.svg "jQuery")
-![VueJs](./docs/svg/vue.svg "jQuery")
 ![NodeJS](./docs/svg/node.svg "NodeJS")
 ![NPM](./docs/svg/npm.svg "NPM")
+![JavaScript](./docs/svg/js.svg "JavaScript")
+![VueJs](./docs/svg/vue.svg "jQuery")
 ![Webpack](./docs/svg/webpack.svg "Webpack")
 ![Grunt](./docs/svg/grunt.svg "Grunt")
 ![Gulp](./docs/svg/gulp.svg "Gulp")
 ![Handlebars](./docs/svg/handlebars.svg "Handlebars")
+![Sass](./docs/svg/sass.svg "Sass")
 ![Bootstrap](./docs/svg/bootstrap.svg "Bootstrap")
 ![Tailwind](./docs/svg/tailwind.svg "Tailwind")
 
