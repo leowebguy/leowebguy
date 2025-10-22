@@ -51,8 +51,7 @@
     "ncu": "ncu",
     "ncuu": "ncu -u",
     "mkcert": "mkdir ./.ssl && mkcert -key-file ./.ssl/key.pem -cert-file ./.ssl/cert.pem localhost 127.0.0.1",
-    "setup": "node setup.js",
-    "merge": "git checkout dev && git push . HEAD:main && git push origin main:main"
+    "setup": "node setup.js"
   },
   "engines": {
     "node": ">= 18",

@@ -37,6 +37,9 @@ mix
         //     ]
         // },
         devServer: {
+            /**
+             * https://localhost:8080/
+             */
             // open: true,
             // server: 'https',
             host: 'localhost',
