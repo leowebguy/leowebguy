@@ -20,8 +20,8 @@ import { load } from 'recaptcha-v3';
     load(process.env.MIX_RECAPTCHA_KEY, {
         autoHideBadge: true
     }).then((recaptcha) => {
-        recaptcha.execute('submit').then((token) => {
-            setAtt(captcha, 'value', token);
+        recaptcha.execute('submit').then((t) => {
+            setAtt(captcha, 'value', t);
         });
     });
 
@@ -31,7 +31,6 @@ import { load } from 'recaptcha-v3';
         dataLayer.push({
             'event': 'Modal open btn'
         });
-        return;
     });
 
     // Url modal open
@@ -53,8 +52,9 @@ import { load } from 'recaptcha-v3';
         data.append('phone', qs('[name=phone]', form).value || '');
         data.append('from', qs('[name=email]', form).value);
         data.append('msg', qs('[name=msg]', form).value);
-        data.append('recaptcha', qs('[name=hiddenRecaptcha]', form).value);
-        axios.post('https://api.gaunte.com/sendmail/', data)
+        // data.append('hostname', window.location.hostname);
+        data.append('token', qs('[name=hiddenRecaptcha]', form).value);
+        axios.post('https://api.gaunte.com/sendmail/', data) // test > https://gaunteapi.ddev.site/sendmail/
             .then((r) => {
                 if (r.data.result) {
                     form.reset();
