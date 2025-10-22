@@ -52,7 +52,6 @@ import { load } from 'recaptcha-v3';
         data.append('phone', qs('[name=phone]', form).value || '');
         data.append('from', qs('[name=email]', form).value);
         data.append('msg', qs('[name=msg]', form).value);
-        // data.append('hostname', window.location.hostname);
         data.append('token', qs('[name=hiddenRecaptcha]', form).value);
         axios.post('https://api.gaunte.com/sendmail/', data) // test > https://gaunteapi.ddev.site/sendmail/
             .then((r) => {
