@@ -44,16 +44,12 @@
     "laravel-mix-criticalcss": "^1.0"
   },
   "scripts": {
-    "dev": "node setup.js && mix",
-    "watch": "node setup.js && mix watch",
-    "hot": "node setup.js && mix watch --hot",
-    "prod": "node setup.js && mix --production",
+    "dev": "mix",
+    "watch": "mix watch",
+    "hot": "mix watch --hot",
+    "prod": "mix --production",
     "ncu": "ncu",
     "ncuu": "ncu -u",
     "mkcert": "mkdir ./.ssl && mkcert -key-file ./.ssl/key.pem -cert-file ./.ssl/cert.pem localhost 127.0.0.1"
-  },
-  "engines": {
-    "node": ">= 18",
-    "npm": ">= 8"
   }
 }

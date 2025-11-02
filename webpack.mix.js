@@ -2,9 +2,11 @@ const mix = require('laravel-mix'),
     pkg = require('./package.json'),
     fs = require('fs-extra'),
     path = require('path'),
-    manifest = require('./public/mix-manifest.json'),
+    // manifest = require('./public/mix-manifest.json'),
     handlebars = require('handlebars-webpack-plugin'),
     gitRevSync = require('git-rev-sync');
+
+const timestamp = Date.now();
 
 require('laravel-mix-banner');
 // require('laravel-mix-handlebars');
@@ -55,10 +57,10 @@ mix
                 entry: path.join(__dirname, pkg.paths.src, '*.hbs'),
                 output: path.join(__dirname, pkg.paths.public, '[name].html'),
                 data: {
-                    manifestJs: manifest['/js/manifest.js'] || '/js/manifest.js',
-                    vendorJs: manifest['/js/vendor.js'] || '/js/vendor.js',
-                    mixJs: manifest['/js/app.js'] || '/js/app.js',
-                    mixCss: manifest['/css/app.css'] || '/css/app.css'
+                    manifestJs: `/js/manifest.js?${timestamp}`,
+                    vendorJs: `/js/vendor.js?${timestamp}`,
+                    mixJs: `/js/app.js?${timestamp}`,
+                    mixCss: `/css/app.css?${timestamp}`
                 },
                 partials: [
                     path.join(__dirname, pkg.paths.src, 'partials', '*.hbs')
