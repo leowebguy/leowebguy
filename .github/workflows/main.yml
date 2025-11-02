@@ -22,7 +22,8 @@ jobs:
         with:
           node-version: '20'
       - run: npm ci --no-audit --legacy-peer-deps
-      - run: npm run prod
+      - run: node setup.js
+      - run: npm mix --production
         env:
           MIX_EMAIL_TO: ${{ vars.MIX_EMAIL_TO }}
           MIX_RECAPTCHA_KEY: ${{ vars.MIX_RECAPTCHA_KEY }}
