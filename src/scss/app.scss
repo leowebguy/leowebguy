@@ -4,9 +4,12 @@
 @import "bootstrap";
 
 /*===================================
-    Fonts
+    Bootstrap Icons
 ====================================*/
-@import "fonts";
+$bootstrap-icons-font-dir: "../fonts/bi" !default;
+@import "bootstrap-icons/font/bootstrap-icons";
+$bootstrap-icons: "bootstrap-icons";
+
 
 /*===================================
     Custom

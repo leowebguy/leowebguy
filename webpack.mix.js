@@ -2,7 +2,7 @@ const mix = require('laravel-mix'),
     pkg = require('./package.json'),
     fs = require('fs-extra'),
     path = require('path'),
-    manifest = require('./docs/mix-manifest.json'),
+    manifest = require('./public/mix-manifest.json'),
     handlebars = require('handlebars-webpack-plugin'),
     gitRevSync = require('git-rev-sync');
 
@@ -90,10 +90,26 @@ if (mix.inProduction()) {
                 path.join(__dirname, pkg.paths.npm, 'bootstrap-icons/font/fonts'),
                 path.join(__dirname, pkg.paths.public, 'fonts/bi')
             );
-            // fs.copySync(
-            //     path.join(__dirname, pkg.paths.src, 'svg'),
-            //     path.join(__dirname, pkg.paths.public, 'svg')
-            // );
+            fs.copySync(
+                path.join(__dirname, pkg.paths.src, 'svg'),
+                path.join(__dirname, pkg.paths.public, 'svg')
+            );
+            fs.copySync(
+                path.join(__dirname, pkg.paths.src, 'img'),
+                path.join(__dirname, pkg.paths.public, 'img')
+            );
+            fs.copySync(
+                path.join(__dirname, pkg.paths.src, 'fav'),
+                path.join(__dirname, pkg.paths.public, 'fav')
+            );
+            fs.copy(
+                path.join(__dirname, pkg.paths.src, 'CNAME'),
+                path.join(__dirname, pkg.paths.public, 'CNAME')
+            );
+            fs.copy(
+                path.join(__dirname, pkg.paths.src, 'favicon.ico'),
+                path.join(__dirname, pkg.paths.public, 'favicon.ico')
+            );
         })
 
         // .purgeCss({

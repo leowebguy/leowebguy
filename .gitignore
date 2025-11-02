@@ -1,27 +1,7 @@
-# protected
 .env
-/auth.json
-
-# certs
 /.ssl
-
-# ddev
-/.ddev/*
-!/.ddev/config.yaml
-!/.ddev/docker-compose.browsersync.yaml
-
-# npm
 /node_modules
-
-# public/docs
-#/docs/**/*
-#!/docs/img
-#!/docs/img/**
-#!/docs/svg
-#!/docs/svg/**
-#!/docs/CNAME
-#!/docs/favicon.ico
-/docs/hot
+/public/**/*
 
 # ide
 .vscode
@@ -29,11 +9,6 @@
 
 # thumbnails
 ._*
-
-# zip/gz
-/**/*.zip
-/**/*.tar
-/**/*.gz
 
 # misc
 *.sass-cache

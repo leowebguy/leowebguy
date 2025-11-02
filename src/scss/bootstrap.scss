@@ -1,18 +1,12 @@
 /* ===================================
-    Functions
+    Functions/Variables/Mixins/Utilities
 ==================================== */
 @import "~bootstrap/scss/functions";
-
-/* ===================================
-    Variables/Mixins/Utilities
-==================================== */
 @import "variables";
-
 @import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/variables-dark";
+//@import "~bootstrap/scss/variables-dark";
 @import "~bootstrap/scss/maps";
 @import "~bootstrap/scss/mixins";
-//@import "utilities";
 @import "~bootstrap/scss/utilities";
 
 /* ===================================

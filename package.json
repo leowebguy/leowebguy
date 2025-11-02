@@ -14,7 +14,7 @@
     "npm": "node_modules",
     "ssl": ".ssl",
     "src": "src",
-    "public": "docs"
+    "public": "public"
   },
   "license": "proprietary",
   "dependencies": {
@@ -44,14 +44,13 @@
     "laravel-mix-criticalcss": "^1.0"
   },
   "scripts": {
-    "dev": "mix",
-    "watch": "mix watch",
-    "hot": "mix watch --hot",
-    "prod": "mix --production",
+    "dev": "node setup.js && mix",
+    "watch": "node setup.js && mix watch",
+    "hot": "node setup.js && mix watch --hot",
+    "prod": "node setup.js && mix --production",
     "ncu": "ncu",
     "ncuu": "ncu -u",
-    "mkcert": "mkdir ./.ssl && mkcert -key-file ./.ssl/key.pem -cert-file ./.ssl/cert.pem localhost 127.0.0.1",
-    "setup": "node setup.js"
+    "mkcert": "mkdir ./.ssl && mkcert -key-file ./.ssl/key.pem -cert-file ./.ssl/cert.pem localhost 127.0.0.1"
   },
   "engines": {
     "node": ">= 18",

@@ -1,11 +1,18 @@
 // Options
-//$enable-caret: false !default;
+$enable-caret: false !default;
 //$enable-shadows: true !default;
 $enable-rfs: false !default;
-//$enable-validation-icons: false !default;
-//$enable-negative-margins: true !default;
-//$enable-dark-mode: false !default;
+$enable-validation-icons: false !default;
+$enable-negative-margins: false !default;
+$enable-dark-mode: false !default;
 //$transition-standard-time: 0.25s !default;
+$nav-transition: all 300ms ease-in-out !default;
+
+// Prefix for :root CSS variables
+$prefix: '';
+
+// The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
+// See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
 $min-contrast-ratio: 3 !default;
 
 // Colors
