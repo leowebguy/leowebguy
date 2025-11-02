@@ -1,5 +1,4 @@
 .env
-/.ssl
 /node_modules
 /public/**/*
 
