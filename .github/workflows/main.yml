@@ -19,14 +19,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        env:
-          MIX_EMAIL_TO: ${{ vars.MIX_EMAIL_TO }}
-          MIX_RECAPTCHA_KEY: ${{ vars.MIX_RECAPTCHA_KEY }}
-          GITHUB_RUN_ID : ${{ github.run_id }}
         with:
           node-version: '20'
       - run: npm ci --no-audit --legacy-peer-deps
       - run: npx mix --production
+        env:
+          MIX_EMAIL_TO: ${{ vars.MIX_EMAIL_TO }}
+          MIX_RECAPTCHA_KEY: ${{ vars.MIX_RECAPTCHA_KEY }}
+          GITHUB_RUN_ID : ${{ github.run_id }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
