@@ -14,7 +14,7 @@
     "npm": "node_modules",
     "ssl": ".ssl",
     "src": "src",
-    "public": "public"
+    "dist": "dist"
   },
   "license": "proprietary",
   "dependencies": {
