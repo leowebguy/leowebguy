@@ -2,44 +2,44 @@
 
 &nbsp;
 
-![PHP](./dist/svg/php.svg "PHP")
-![Craft CMS](./dist/svg/craftcms.svg "Craft CMS")
-![Laravel](./dist/svg/laravel.svg "Laravel")
-![WordPress](./dist/svg/wp.svg "WordPress")
-![Shopify](./dist/svg/shopify.svg "Shopify")
+![PHP](./src/svg/php.svg "PHP")
+![Craft CMS](./src/svg/craftcms.svg "Craft CMS")
+![Laravel](./src/svg/laravel.svg "Laravel")
+![WordPress](./src/svg/wp.svg "WordPress")
+![Shopify](./src/svg/shopify.svg "Shopify")
 
-![Docker](./dist/svg/docker.svg "Docker")
-![Linux](./dist/svg/linux.svg "Linux")
-![Ubuntu](./dist/svg/ubuntu.svg "Ubuntu")
-![AWS](./dist/svg/aws.svg "AWS")
-![Apache](./dist/svg/apache.svg "Apache")
-![Github](./dist/svg/github.svg "Github")
-![Bash](./dist/svg/bash.svg "Bash")
-![MySQL](./dist/svg/mysql.svg "MySQL")
-![PostgreSQL](./dist/svg/postgre.svg "PostgreSQL")
-![MariaDB](./dist/svg/mariadb.svg "MariaDB")
+![Docker](./src/svg/docker.svg "Docker")
+![Linux](./src/svg/linux.svg "Linux")
+![Ubuntu](./src/svg/ubuntu.svg "Ubuntu")
+![AWS](./src/svg/aws.svg "AWS")
+![Apache](./src/svg/apache.svg "Apache")
+![Github](./src/svg/github.svg "Github")
+![Bash](./src/svg/bash.svg "Bash")
+![MySQL](./src/svg/mysql.svg "MySQL")
+![PostgreSQL](./src/svg/postgre.svg "PostgreSQL")
+![MariaDB](./src/svg/mariadb.svg "MariaDB")
 
-![NodeJS](./dist/svg/node.svg "NodeJS")
-![NPM](./dist/svg/npm.svg "NPM")
-![JavaScript](./dist/svg/js.svg "JavaScript")
-![VueJs](./dist/svg/vue.svg "jQuery")
-![Webpack](./dist/svg/webpack.svg "Webpack")
-![Grunt](./dist/svg/grunt.svg "Grunt")
-![Gulp](./dist/svg/gulp.svg "Gulp")
-![Handlebars](./dist/svg/handlebars.svg "Handlebars")
-![Sass](./dist/svg/sass.svg "Sass")
-![Bootstrap](./dist/svg/bootstrap.svg "Bootstrap")
-![Tailwind](./dist/svg/tailwind.svg "Tailwind")
+![NodeJS](./src/svg/node.svg "NodeJS")
+![NPM](./src/svg/npm.svg "NPM")
+![JavaScript](./src/svg/js.svg "JavaScript")
+![VueJs](./src/svg/vue.svg "Vue")
+![Webpack](./src/svg/webpack.svg "Webpack")
+![Grunt](./src/svg/grunt.svg "Grunt")
+![Gulp](./src/svg/gulp.svg "Gulp")
+![Handlebars](./src/svg/handlebars.svg "Handlebars")
+![Sass](./src/svg/sass.svg "Sass")
+![Bootstrap](./src/svg/bootstrap.svg "Bootstrap")
+![Tailwind](./src/svg/tailwind.svg "Tailwind")
 
 ---
 
 📫 Got a project? [reach out](https://leowebguy.com?contact)
 
-🌱 Check out my [plugins](https://plugins.craftcms.com/developer/leowebguy?craft4)
-
 <!--
 
-[![linkedin](./dist/svg/linkedin.svg)](https://linkedin.com/in/leowebguy)&nbsp;&nbsp;[![stackoverflow](./dist/svg/stackoverflow.svg)](https://stackoverflow.com/users/3058927/leo-leoncio)
+🌱 Check out my [plugins](https://plugins.craftcms.com/developer/leowebguy?craft4)
+
+[![linkedin](./src/svg/linkedin.svg)](https://linkedin.com/in/leowebguy)&nbsp;&nbsp;[![stackoverflow](./src/svg/stackoverflow.svg)](https://stackoverflow.com/users/3058927/leo-leoncio)
 
 **leowebguy/leowebguy** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
@@ -59,4 +59,5 @@ Here are some ideas to get you started:
 - 👯 I’m looking to collaborate with other content creators
 - 🥅 2020 Goals: Contribute more to Open Source projects
 - ⚡ Fun fact: I love to draw and play guitar / drums
+
 -->
