@@ -2,34 +2,34 @@
 
 &nbsp;
 
-![PHP](./public/svg/php.svg "PHP")
-![Craft CMS](./public/svg/craftcms.svg "Craft CMS")
-![Laravel](./public/svg/laravel.svg "Laravel")
-![WordPress](./public/svg/wp.svg "WordPress")
-![Shopify](./public/svg/shopify.svg "Shopify")
+![PHP](./dist/svg/php.svg "PHP")
+![Craft CMS](./dist/svg/craftcms.svg "Craft CMS")
+![Laravel](./dist/svg/laravel.svg "Laravel")
+![WordPress](./dist/svg/wp.svg "WordPress")
+![Shopify](./dist/svg/shopify.svg "Shopify")
 
-![Docker](./public/svg/docker.svg "Docker")
-![Linux](./public/svg/linux.svg "Linux")
-![Ubuntu](./public/svg/ubuntu.svg "Ubuntu")
-![AWS](./public/svg/aws.svg "AWS")
-![Apache](./public/svg/apache.svg "Apache")
-![Github](./public/svg/github.svg "Github")
-![Bash](./public/svg/bash.svg "Bash")
-![MySQL](./public/svg/mysql.svg "MySQL")
-![PostgreSQL](./public/svg/postgre.svg "PostgreSQL")
-![MariaDB](./public/svg/mariadb.svg "MariaDB")
+![Docker](./dist/svg/docker.svg "Docker")
+![Linux](./dist/svg/linux.svg "Linux")
+![Ubuntu](./dist/svg/ubuntu.svg "Ubuntu")
+![AWS](./dist/svg/aws.svg "AWS")
+![Apache](./dist/svg/apache.svg "Apache")
+![Github](./dist/svg/github.svg "Github")
+![Bash](./dist/svg/bash.svg "Bash")
+![MySQL](./dist/svg/mysql.svg "MySQL")
+![PostgreSQL](./dist/svg/postgre.svg "PostgreSQL")
+![MariaDB](./dist/svg/mariadb.svg "MariaDB")
 
-![NodeJS](./public/svg/node.svg "NodeJS")
-![NPM](./public/svg/npm.svg "NPM")
-![JavaScript](./public/svg/js.svg "JavaScript")
-![VueJs](./public/svg/vue.svg "jQuery")
-![Webpack](./public/svg/webpack.svg "Webpack")
-![Grunt](./public/svg/grunt.svg "Grunt")
-![Gulp](./public/svg/gulp.svg "Gulp")
-![Handlebars](./public/svg/handlebars.svg "Handlebars")
-![Sass](./public/svg/sass.svg "Sass")
-![Bootstrap](./public/svg/bootstrap.svg "Bootstrap")
-![Tailwind](./public/svg/tailwind.svg "Tailwind")
+![NodeJS](./dist/svg/node.svg "NodeJS")
+![NPM](./dist/svg/npm.svg "NPM")
+![JavaScript](./dist/svg/js.svg "JavaScript")
+![VueJs](./dist/svg/vue.svg "jQuery")
+![Webpack](./dist/svg/webpack.svg "Webpack")
+![Grunt](./dist/svg/grunt.svg "Grunt")
+![Gulp](./dist/svg/gulp.svg "Gulp")
+![Handlebars](./dist/svg/handlebars.svg "Handlebars")
+![Sass](./dist/svg/sass.svg "Sass")
+![Bootstrap](./dist/svg/bootstrap.svg "Bootstrap")
+![Tailwind](./dist/svg/tailwind.svg "Tailwind")
 
 ---
 
@@ -39,7 +39,7 @@
 
 <!--
 
-[![linkedin](./public/svg/linkedin.svg)](https://linkedin.com/in/leowebguy)&nbsp;&nbsp;[![stackoverflow](./public/svg/stackoverflow.svg)](https://stackoverflow.com/users/3058927/leo-leoncio)
+[![linkedin](./dist/svg/linkedin.svg)](https://linkedin.com/in/leowebguy)&nbsp;&nbsp;[![stackoverflow](./dist/svg/stackoverflow.svg)](https://stackoverflow.com/users/3058927/leo-leoncio)
 
 **leowebguy/leowebguy** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
