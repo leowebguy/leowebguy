@@ -19,25 +19,25 @@
   "license": "proprietary",
   "dependencies": {
     "@popperjs/core": "^2.11",
-    "axios": "^1.6",
+    "axios": "^1.15",
     "bootstrap": "^5.3",
-    "bootstrap-icons": "^1.11",
-    "recaptcha-v3": "^1.10.0"
+    "bootstrap-icons": "^1.13",
+    "recaptcha-v3": "^1.11"
   },
   "devDependencies": {
     "autoprefixer": "^10.4",
-    "fs-extra": "^11.2",
+    "fs-extra": "^11.3",
     "git-rev-sync": "^3.0",
     "handlebars-webpack-plugin": "^2.2",
     "laravel-mix": "^6.0",
     "laravel-mix-banner": "*",
     "laravel-mix-compress": "^3.0",
     "laravel-mix-purgecss": "^6.0",
-    "npm-check-updates": "^16.14",
+    "npm-check-updates": "^20.0",
     "path": "^0.12",
-    "sass": "^1.71",
-    "sass-loader": "^14.1",
-    "webpack-cli": "^5.1"
+    "sass": "^1.99",
+    "sass-loader": "^16.0",
+    "webpack-cli": "^7.0"
   },
   "//": {
     "laravel-mix-bundle-analyzer": "^1.0",
