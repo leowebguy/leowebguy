@@ -18,7 +18,7 @@ import { load } from 'recaptcha-v3';
 
     // Recaptcha
     if (isDefined(captcha))
-        load(process.env.MIX_RECAPTCHA_KEY, {
+        load(process.env.WEBPACK_RECAPTCHA_KEY, {
             autoHideBadge: true
         }).then((recaptcha) => {
             recaptcha.execute('submit').then((t) => {
@@ -30,17 +30,17 @@ import { load } from 'recaptcha-v3';
     if (isDefined(modal))
         listen(contact, 'click', () => {
             (new Modal(modal)).show();
-            dataLayer.push({
-                'event': 'Modal open btn'
-            });
+            // dataLayer.push({
+            //     'event': 'Modal open btn'
+            // });
         });
 
     // Url modal open
     if (query && query.has('contact')) {
         (new Modal(modal)).show();
-        dataLayer.push({
-            'event': 'Modal open url'
-        });
+        // dataLayer.push({
+        //     'event': 'Modal open url'
+        // });
     }
 
     // Form submit
@@ -49,7 +49,7 @@ import { load } from 'recaptcha-v3';
             e.preventDefault();
             const data = new FormData();
             data.append('subj', 'leowebguy | contact');
-            data.append('to', process.env.MIX_EMAIL_TO || 'leowebguy@gmail.com');
+            data.append('to', 'leowebguy@gmail.com');
             data.append('bcc', null); // do not bcc myself
             data.append('name', qs('[name=name]', form).value || '');
             data.append('phone', qs('[name=phone]', form).value || '');
@@ -62,23 +62,23 @@ import { load } from 'recaptcha-v3';
                         form.reset();
                         fieldset.classList.add('d-none');
                         success.classList.remove('d-none');
-                        dataLayer.push({
-                            'event': 'Form'
-                        });
+                        // dataLayer.push({
+                        //     'event': 'Form'
+                        // });
                     } else {
                         warning.classList.remove('d-none');
                         console.error(r.data.message);
-                        dataLayer.push({
-                            'event': 'Form error'
-                        });
+                        // dataLayer.push({
+                        //     'event': 'Form error'
+                        // });
                     }
                 })
                 .catch((err) => {
                     warning.classList.remove('d-none');
                     console.error(err);
-                    dataLayer.push({
-                        'event': 'Form error'
-                    });
+                    // dataLayer.push({
+                    //     'event': 'Form error'
+                    // });
                 });
         });
 })();

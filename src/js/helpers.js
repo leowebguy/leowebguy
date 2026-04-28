@@ -6,13 +6,13 @@ export const qs = (selector, parent = document) => {
     return parent.querySelector(selector);
 };
 
-export const qsa = (selector, parent = document) => {
-    return parent.querySelectorAll(selector);
-};
+// export const qsa = (selector, parent = document) => {
+//     return parent.querySelectorAll(selector);
+// };
 
-export const gid = (id) => {
-    return document.getElementById(id);
-};
+// export const gid = (id) => {
+//     return document.getElementById(id);
+// };
 
 export const listen = (el, ev, fn) => {
     el.addEventListener(ev, fn, false);
@@ -31,9 +31,9 @@ export const listen = (el, ev, fn) => {
 //     });
 // };
 
-export const trigger = (el, event) => {
-    el.dispatchEvent(event);
-};
+// export const trigger = (el, event) => {
+//     el.dispatchEvent(event);
+// };
 
 // export const triggerAll = (el, eventList = []) => {
 //     eventList.forEach((event) => {
@@ -41,13 +41,13 @@ export const trigger = (el, event) => {
 //     });
 // };
 
-export const insertHTML = (el, html, p = 'beforeend') => {
-    el.insertAdjacentHTML(p, html);
-};
+// export const insertHTML = (el, html, p = 'beforeend') => {
+//     el.insertAdjacentHTML(p, html);
+// };
 
-export const getAtt = (el, name) => {
-    return el.getAttribute(name);
-};
+// export const getAtt = (el, name) => {
+//     return el.getAttribute(name);
+// };
 
 export const setAtt = (el, name, val) => {
     return el.setAttribute(name, val);
@@ -69,9 +69,9 @@ export const isDefined = (el) => {
     return ((Array.isArray(el)) && (el.length !== 0)) || ((typeof (el) !== 'undefined') && (el !== null));
 };
 
-export const simpleMerge = (a, b) => {
-    return {...a, ...b};
-};
+// export const simpleMerge = (a, b) => {
+//     return {...a, ...b};
+// };
 
 // export const getSupportedPropertyName = (properties) => {
 //     for (let i = 0; i < properties.length; i++) {
@@ -106,20 +106,20 @@ export const simpleMerge = (a, b) => {
 //     return window.innerWidth - document.documentElement.clientWidth;
 // };
 
-export const getCookie = (name) => {
-    const v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-    return v ? v[2] : null;
-};
+// export const getCookie = (name) => {
+//     const v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+//     return v ? v[2] : null;
+// };
 
-export const setCookie = (name, value, days) => {
-    const d = new Date();
-    d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
-    document.cookie = name + '=' + value + ';path=/;expires=' + d.toGMTString();
-};
+// export const setCookie = (name, value, days) => {
+//     const d = new Date();
+//     d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
+//     document.cookie = name + '=' + value + ';path=/;expires=' + d.toGMTString();
+// };
 
-export const deleteCookie = (name) => {
-    setCookie(name, '', -1);
-};
+// export const deleteCookie = (name) => {
+//     setCookie(name, '', -1);
+// };
 
 // export const getCssVariable = (name) => {
 //     return getComputedStyle(document.documentElement).getPropertyValue(name);
@@ -173,4 +173,4 @@ export const deleteCookie = (name) => {
 //     }
 // };
 
-export const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+// export const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);

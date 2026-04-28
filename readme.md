@@ -38,7 +38,10 @@
 ![Bootstrap](./src/svg/bootstrap.svg "Bootstrap")
 ![Tailwind](./src/svg/tailwind.svg "Tailwind")
 
-<!-- https://techicons.dev/icons/ -->
+<!--
+    https://techicons.dev/icons/
+    https://www.tech-stack-icons.com/
+-->
 
 ---
 
