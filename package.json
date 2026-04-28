@@ -1,55 +1,92 @@
 {
-  "name": "leowebguy.com",
+  "name": "leowebguy",
   "description": "",
-  "private": false,
+  "authors": [
+    {
+      "name": "Leo Leoncio",
+      "email": "leowebguy@gmail.com",
+      "homepage": "https://github.com/leowebguy/"
+    }
+  ],
   "version": "1.0.0",
-  "repository": "git@github.com:leowebguy/leowebguy.git",
-  "author": {
-    "name": "Leo Leoncio",
-    "email": "leowebguy@gmail.com",
-    "url": "https://github.com/leowebguy"
-  },
-  "paths": {
-    "base": ".",
-    "npm": "node_modules",
-    "ssl": ".ssl",
-    "src": "src",
-    "dist": "dist"
-  },
+  "private": true,
+  "type": "module",
   "license": "proprietary",
   "dependencies": {
     "@popperjs/core": "^2.11",
     "axios": "^1.15",
-    "bootstrap": "^5.3",
+    "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13",
     "recaptcha-v3": "^1.11"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4",
-    "fs-extra": "^11.3",
-    "git-rev-sync": "^3.0",
-    "handlebars-webpack-plugin": "^2.2",
-    "laravel-mix": "^6.0",
-    "laravel-mix-banner": "*",
-    "laravel-mix-compress": "^3.0",
-    "laravel-mix-purgecss": "^6.0",
-    "npm-check-updates": "^20.0",
-    "path": "^0.12",
-    "sass": "^1.99",
-    "sass-loader": "^16.0",
-    "webpack-cli": "^7.0"
-  },
-  "//": {
-    "laravel-mix-bundle-analyzer": "^1.0",
-    "laravel-mix-criticalcss": "^1.0"
+    "@babel/core": "^7.29.0",
+    "@babel/eslint-parser": "^7.28.6",
+    "@babel/preset-env": "^7.29.2",
+    "autoprefixer": "^10.5.0",
+    "babel-loader": "^10.1.1",
+    "browser-sync": "^3.0.4",
+    "browser-sync-webpack-plugin": "^2.4.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "compression-webpack-plugin": "^12.0.0",
+    "copy-webpack-plugin": "^14.0.0",
+    "cross-env": "^10.1.0",
+    "css-loader": "^7.1.4",
+    "css-minimizer-webpack-plugin": "^8.0.0",
+    "dotenv": "^17.4.2",
+    "dotenv-webpack": "^9.0.0",
+    "git-rev-sync": "^3.0.2",
+    "glob": "^13.0.6",
+    "handlebars-webpack-plugin": "^2.2.1",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0",
+    "mini-css-extract-plugin": "^2.10.2",
+    "npm-check-updates": "^22.0.1",
+    "postcss-loader": "^8.2.1",
+    "prettier": "^3.8",
+    "purgecss-webpack-plugin": "^8.0.0",
+    "sass": "^1.99.0",
+    "sass-loader": "^16.0.7",
+    "style-loader": "^4.0.0",
+    "terser-webpack-plugin": "^5.5.0",
+    "webpack": "^5.106.2",
+    "webpack-cli": "^7.0.2",
+    "webpack-dev-server": "^5.2.3",
+    "webpack-manifest-plugin": "^6.0.1",
+    "webpack-merge": "^6.0.1"
   },
   "scripts": {
-    "dev": "mix",
-    "watch": "mix watch",
-    "hot": "mix watch --hot",
-    "prod": "mix --production",
-    "ncu": "ncu",
-    "ncuu": "ncu -u",
-    "mkcert": "mkdir ./.ssl && mkcert -key-file ./.ssl/key.pem -cert-file ./.ssl/cert.pem localhost 127.0.0.1"
+    "dev": "NODE_ENV=development webpack --config webpack.config.cjs",
+    "hot": "NODE_ENV=development webpack --watch --config webpack.config.cjs",
+    "prod": "NODE_ENV=production webpack --config webpack.config.cjs"
+  },
+  "paths": {
+    "base": ".",
+    "npm": "./node_modules",
+    "src": "./src",
+    "dist": "./dist"
+  },
+  "manifest": {
+    "name": "leowebguy",
+    "short_name": "leowebguy",
+    "display": "browser",
+    "description": "",
+    "icons": [
+      {
+        "src": "/favicons/favicon-16x16.png",
+        "sizes": "16x16",
+        "type": "image/png"
+      },
+      {
+        "src": "/favicons/favicon-32x32.png",
+        "sizes": "32x32",
+        "type": "image/png"
+      },
+      {
+        "src": "/favicons/favicon-96x96.png",
+        "sizes": "70x70",
+        "type": "image/png"
+      }
+    ]
   }
 }

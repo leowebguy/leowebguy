@@ -2,7 +2,6 @@
 <html lang="en" data-bs-theme="dark">
 {{> partials/head
     title='leowebguy'
-    description='nom nom nom nom nom nom'
     canonical='https://leowebguy.com/' }}
 <style>
     img.svg {
@@ -12,10 +11,10 @@
 </style>
 <body class="d-flex flex-column min-vh-100">
     <div class="container my-6">
-        <div class="p-4 border rounded shadow-lg">{{!--  --}}
+        <div class="p-4 border rounded shadow-lg">
             <div class="row align-items-center">
                 <div class="col-lg-4 offset-lg-1 mb-4 mb-lg-0 order-lg-2">
-                    <img src="/img/leo.jpg" alt="leowebguy" class="rounded img-fluid">{{!--  --}}
+                    <img src="img/leo.jpg" alt="leowebguy" class="rounded img-fluid">
                 </div>
                 <div class="col-lg-7 order-lg-1">
                     <h3>Web Engineer, PHP & Craft CMS expert with 14+ yrs of experience working with clients ranging from small businesses to large corporations.</h3>
@@ -23,36 +22,36 @@
                     <div class="d-flex my-4"></div>
 
                     <div class="d-flex flex-wrap gap-2">{{!-- https://www.tech-stack-icons.com/ --}}
-                        <img alt="PHP" src="/svg/php.svg" class="svg" title="PHP">
-                        <img alt="Craft CMS" src="/svg/craftcms.svg" class="svg" title="Craft CMS">
-                        <img alt="Laravel" src="/svg/laravel.svg" class="svg" title="Laravel">
-                        <img alt="WordPress" src="/svg/wp.svg" class="svg" title="WordPress">
-                        <img alt="Shopify" src="/svg/shopify.svg" class="svg" title="Shopify">
+                        <img alt="PHP" src="svg/php.svg" class="svg" title="PHP">
+                        <img alt="Craft CMS" src="svg/craftcms.svg" class="svg" title="Craft CMS">
+                        <img alt="Laravel" src="svg/laravel.svg" class="svg" title="Laravel">
+                        <img alt="WordPress" src="svg/wp.svg" class="svg" title="WordPress">
+                        <img alt="Shopify" src="svg/shopify.svg" class="svg" title="Shopify">
 
                         <div class="d-none d-md-block w-100"></div>
-                        <img alt="Docker" src="/svg/docker.svg" class="svg" title="Docker">
-                        <img alt="Linux" src="/svg/linux.svg" class="svg" title="Linux">
-                        <img alt="Ubuntu" src="/svg/ubuntu.svg" class="svg" title="Ubuntu">
-                        <img alt="AWS" src="/svg/aws.svg" class="svg" title="AWS">
-                        <img alt="Apache" src="/svg/apache.svg" class="svg" title="Apache">
-                        <img alt="Github" src="/svg/github.svg" class="svg" title="Github">
-                        <img alt="Bash" src="/svg/bash.svg" class="svg" title="Bash">
-                        <img alt="MySQL" src="/svg/mysql.svg" class="svg" title="MySQL">
-                        <img alt="PostgreSQL" src="/svg/postgre.svg" class="svg" title="PostgreSQL">
-                        <img alt="MariaDB" src="/svg/mariadb.svg" class="svg" title="MariaDB">
+                        <img alt="Docker" src="svg/docker.svg" class="svg" title="Docker">
+                        <img alt="Linux" src="svg/linux.svg" class="svg" title="Linux">
+                        <img alt="Ubuntu" src="svg/ubuntu.svg" class="svg" title="Ubuntu">
+                        <img alt="AWS" src="svg/aws.svg" class="svg" title="AWS">
+                        <img alt="Apache" src="svg/apache.svg" class="svg" title="Apache">
+                        <img alt="Github" src="svg/github.svg" class="svg" title="Github">
+                        <img alt="Bash" src="svg/bash.svg" class="svg" title="Bash">
+                        <img alt="MySQL" src="svg/mysql.svg" class="svg" title="MySQL">
+                        <img alt="PostgreSQL" src="svg/postgre.svg" class="svg" title="PostgreSQL">
+                        <img alt="MariaDB" src="svg/mariadb.svg" class="svg" title="MariaDB">
 
                         <div class="d-none d-md-block w-100"></div>
-                        <img alt="NodeJS" src="/svg/node.svg" class="svg" title="NodeJS">
-                        <img alt="NPM" src="/svg/npm.svg" class="svg" title="NPM">
-                        <img alt="JavaScript" src="/svg/js.svg" class="svg" title="JavaScript">
-                        <img alt="NuxtJS" src="/svg/nuxt.svg" class="svg" title="NuxtJS">
-                        <img alt="VueJs" src="/svg/vue.svg" class="svg" title="VueJS">
-                        <img alt="Webpack" src="/svg/webpack.svg" class="svg" title="Webpack">
-                        <img alt="Grunt" src="/svg/grunt.svg" class="svg" title="Grunt">
-                        <img alt="Gulp" src="/svg/gulp.svg" class="svg" title="Gulp">
-                        <img alt="Sass" src="/svg/sass.svg" class="svg" title="Sass">
-                        <img alt="Bootstrap" src="/svg/bootstrap.svg" class="svg" title="Bootstrap">
-                        <img alt="Tailwind" src="/svg/tailwind.svg" class="svg" title="Tailwind">
+                        <img alt="NodeJS" src="svg/node.svg" class="svg" title="NodeJS">
+                        <img alt="NPM" src="svg/npm.svg" class="svg" title="NPM">
+                        <img alt="JavaScript" src="svg/js.svg" class="svg" title="JavaScript">
+                        <img alt="NuxtJS" src="svg/nuxt.svg" class="svg" title="NuxtJS">
+                        <img alt="VueJs" src="svg/vue.svg" class="svg" title="VueJS">
+                        <img alt="Webpack" src="svg/webpack.svg" class="svg" title="Webpack">
+                        <img alt="Grunt" src="svg/grunt.svg" class="svg" title="Grunt">
+                        <img alt="Gulp" src="svg/gulp.svg" class="svg" title="Gulp">
+                        <img alt="Sass" src="svg/sass.svg" class="svg" title="Sass">
+                        <img alt="Bootstrap" src="svg/bootstrap.svg" class="svg" title="Bootstrap">
+                        <img alt="Tailwind" src="svg/tailwind.svg" class="svg" title="Tailwind">
                     </div>
 
                     <div class="d-flex my-3"></div>
@@ -72,8 +71,7 @@
         </div>
     </div>
     {{> partials/modal id='contact' }}
-    <script src="{{{ manifestJs }}}"></script>
-    <script src="{{{ vendorJs }}}"></script>
-    <script src="{{{ mixJs }}}"></script>
+    <script src="{{{ vendorJS }}}"></script>
+    <script src="{{{ appJS }}}"></script>
 </body>
 </html>

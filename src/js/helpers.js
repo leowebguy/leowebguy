@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 
+// export const isProd = process.env.NODE_ENV === 'production';
+
 export const qs = (selector, parent = document) => {
     return parent.querySelector(selector);
 };

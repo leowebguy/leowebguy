@@ -1,4 +1,4 @@
-import { isDefined, listen, qs, setAtt } from './helpers';
+import { isDefined, listen, qs, setAtt } from './helpers.js';
 import { Modal } from 'bootstrap';
 import axios from 'axios';
 import { load } from 'recaptcha-v3';
