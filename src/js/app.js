@@ -1,32 +1,20 @@
-import { isDefined, listen, qs, setAtt } from './helpers.js';
+import { isDefined, listen, qs } from './helpers.js';
 import { Modal } from 'bootstrap';
 import axios from 'axios';
-import { load } from 'recaptcha-v3';
 
 (() => {
     // Variables
     const contact = qs('.contact');
     const modal = qs('#contact');
-
     const form = qs('form[name=contact]');
-    const captcha = qs('[name=hiddenRecaptcha]', form);
     const fieldset = qs('fieldset', form);
     const success = qs('.success', form);
     const warning = qs('.warning', form);
+    const captcha = qs('.captcha', form);
 
     const query = new URLSearchParams(window.location.search);
 
-    // Recaptcha
-    if (isDefined(captcha))
-        load('6Lfe55gUAAAAALT63VWPk0DsLRlh-cK77Bv0QkVL', {
-            autoHideBadge: true
-        }).then((recaptcha) => {
-            recaptcha.execute('submit').then((t) => {
-                setAtt(captcha, 'value', t);
-            });
-        });
-
-    // Btn modal open
+    // Button modal open
     if (isDefined(modal))
         listen(contact, 'click', () => {
             (new Modal(modal)).show();
@@ -35,7 +23,7 @@ import { load } from 'recaptcha-v3';
             // });
         });
 
-    // Url modal open
+    // URL modal open
     if (query && query.has('contact')) {
         (new Modal(modal)).show();
         // dataLayer.push({
@@ -47,6 +35,15 @@ import { load } from 'recaptcha-v3';
     if (isDefined(form))
         listen(form, 'submit', (e) => {
             e.preventDefault();
+
+            // Recaptcha
+            const token = grecaptcha.getResponse() || '';
+            if (!token || token.length < 10) {
+                captcha.classList.remove('d-none');
+                setTimeout(() => captcha.classList.add('d-none'), 5000);
+                return;
+            }
+
             const data = new FormData();
             data.append('subj', 'leowebguy | contact');
             data.append('to', 'leowebguy@gmail.com');
@@ -55,8 +52,8 @@ import { load } from 'recaptcha-v3';
             data.append('phone', qs('[name=phone]', form).value || '');
             data.append('from', qs('[name=email]', form).value);
             data.append('msg', qs('[name=msg]', form).value);
-            data.append('token', captcha.value);
-            axios.post('https://api.gaunte.com/sendmail/', data)
+            data.append('token', token);
+            axios.post('https://api.gaunte.dev/sendmail/', data)
                 .then((r) => {
                     if (r.data.result) {
                         form.reset();

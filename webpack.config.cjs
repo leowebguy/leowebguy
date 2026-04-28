@@ -101,6 +101,7 @@ module.exports = () => {
                 entry: path.join(__dirname, pkg.paths.src, '*.hbs'),
                 output: path.join(__dirname, pkg.paths.dist, '[name].html'),
                 data: {
+                    isProd: isProd,
                     vendorJS: `js/vendor.js?v=${t}`,
                     appJS: `js/app.js?v=${t}`,
                     appCSS: `css/app.css?v=${t}`

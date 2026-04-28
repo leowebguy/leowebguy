@@ -8,20 +8,23 @@
                 </div>
                 <div class="modal-body">
                     <fieldset>
-                        <input type="hidden" name="hiddenRecaptcha" value="">
                         <input type="text" name="name" class="form-control mb-3" placeholder="Name (required)" maxlength="60" autocomplete="name" required>
                         <input type="email" name="email" class="form-control mb-3" placeholder="Email (required)" autocomplete="email" required>
                         <input type="tel" name="phone" class="form-control mb-3" placeholder="Phone" autocomplete="tel">
                         <textarea name="msg" class="form-control mb-3" rows="6" placeholder="Your message here (required)" maxlength="255" required></textarea>
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex justify-content-end gap-3">
+                            <div class="g-recaptcha" data-sitekey="6Lct-SQUAAAAADK1vfAdFWhUCpXmHKsIuBBq3Vjb"></div>
                             <button type="submit" class="btn btn-lg btn-secondary px-5">Send</button>
                         </div>
                     </fieldset>
-                    <div class="alert alert-light success d-none w-100">
-                        Thanks for your message!<br>I'll reach out as soon as possible.
+                    <div class="alert alert-light success d-none w-100 mt-3">
+                        Thanks for your message!<br>I'll reach out as soon as possible
                     </div>
-                    <div class="alert alert-warning warning d-none w-100">
+                    <div class="alert alert-warning warning d-none w-100 mt-3">
                         Sorry, something went wrong. Please send an email to leowebguy@gmail.com
+                    </div>
+                    <div class="alert alert-warning captcha d-none w-100 mt-3">
+                        Please complete the CAPTCHA
                     </div>
                 </div>
                 {{!-- <div class="modal-footer">

@@ -14,8 +14,7 @@
     "@popperjs/core": "^2.11",
     "axios": "^1.15",
     "bootstrap": "^5.3.8",
-    "bootstrap-icons": "^1.13",
-    "recaptcha-v3": "^1.11"
+    "bootstrap-icons": "^1.13"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
