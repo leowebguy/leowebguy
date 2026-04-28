@@ -1,5 +1,4 @@
 const webpack = require('webpack'),
-    Dotenv = require('dotenv-webpack'),
     pkg = require('./package.json'),
     path = require('path'),
     glob = require('glob'),
@@ -161,7 +160,7 @@ module.exports = () => {
                 banner: [
                     '/**',
                     ` * @project        ${pkg.name} | ${gitRevSync.date()}`,
-                    ` * @author         ${pkg.authors[0].name} <${pkg.authors[0].email}>`,
+                    ` * @author         ${pkg.author.name} <${pkg.author.email}>`,
                     ` * @release        ${gitRevSync.remoteUrl()} [branch: ${gitRevSync.branch()}]`,
                     ` * @copyright      Copyright (c)`,
                     ` */\n`

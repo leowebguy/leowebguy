@@ -7,9 +7,9 @@ import { load } from 'recaptcha-v3';
     // Variables
     const contact = qs('.contact');
     const modal = qs('#contact');
-    const captcha = qs('[name=hiddenRecaptcha]');
 
     const form = qs('form[name=contact]');
+    const captcha = qs('[name=hiddenRecaptcha]', form);
     const fieldset = qs('fieldset', form);
     const success = qs('.success', form);
     const warning = qs('.warning', form);
@@ -55,7 +55,7 @@ import { load } from 'recaptcha-v3';
             data.append('phone', qs('[name=phone]', form).value || '');
             data.append('from', qs('[name=email]', form).value);
             data.append('msg', qs('[name=msg]', form).value);
-            data.append('token', qs('[name=hiddenRecaptcha]', form).value);
+            data.append('token', captcha.value);
             axios.post('https://api.gaunte.com/sendmail/', data)
                 .then((r) => {
                     if (r.data.result) {
