@@ -18,7 +18,7 @@ import { load } from 'recaptcha-v3';
 
     // Recaptcha
     if (isDefined(captcha))
-        load(process.env.WEBPACK_RECAPTCHA_KEY, {
+        load('6Lfe55gUAAAAALT63VWPk0DsLRlh-cK77Bv0QkVL', {
             autoHideBadge: true
         }).then((recaptcha) => {
             recaptcha.execute('submit').then((t) => {
@@ -56,7 +56,7 @@ import { load } from 'recaptcha-v3';
             data.append('from', qs('[name=email]', form).value);
             data.append('msg', qs('[name=msg]', form).value);
             data.append('token', qs('[name=hiddenRecaptcha]', form).value);
-            axios.post('https://api.gaunte.com/sendmail/', data) // test > https://gaunteapi.ddev.site/sendmail/
+            axios.post('https://api.gaunte.com/sendmail/', data)
                 .then((r) => {
                     if (r.data.result) {
                         form.reset();

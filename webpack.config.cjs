@@ -82,9 +82,6 @@ module.exports = () => {
         },
         plugins: [
             !isProd && new webpack.ProgressPlugin(),
-            !isProd && new Dotenv({
-                expand: true
-            }),
             new WebpackBrowserSync({
                 host: 'localhost',
                 port: '8080',
