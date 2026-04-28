@@ -82,7 +82,7 @@ module.exports = () => {
         },
         plugins: [
             !isProd && new webpack.ProgressPlugin(),
-            new Dotenv({
+            !isProd && new Dotenv({
                 expand: true
             }),
             new WebpackBrowserSync({
@@ -116,45 +116,20 @@ module.exports = () => {
             new WebpackCssExtract({
                 filename: 'css/[name].css'
             }),
-            isProd && new PurgeCSSPlugin({
-                paths: glob.sync(path.join(__dirname, pkg.paths.src, '*.hbs'), { nodir: true })
+            new PurgeCSSPlugin({
+                paths: glob.sync(path.join(__dirname, pkg.paths.src, '**/*.hbs'), { nodir: true }),
+                safelist: ['active', 'modal-backdrop', 'fade', 'show']
             }),
             isProd && new WebpackCopy({
                 patterns: [
-                    {
-                        from: path.join(__dirname, pkg.paths.src, 'CNAME'),
-                        to: path.join(__dirname, pkg.paths.dist)
-                    },
-                    {
-                        from: path.join(__dirname, pkg.paths.src, 'favicons/favicon.ico'),
-                        to: path.join(__dirname, pkg.paths.dist)
-                    },
-                    {
-                        from: path.join(__dirname, pkg.paths.src, 'favicons'),
-                        to: path.join(__dirname, pkg.paths.dist, 'favicons')
-                    },
-                    {
-                        from: path.join(__dirname, pkg.paths.src, 'svg'),
-                        to: path.join(__dirname, pkg.paths.dist, 'svg')
-                    },
-                    {
-                        from: path.join(__dirname, pkg.paths.src, 'img'),
-                        to: path.join(__dirname, pkg.paths.dist, 'img')
-                    },
-                    {
-                        from: path.join(__dirname, pkg.paths.npm, 'bootstrap-icons/font/fonts'),
-                        to: path.join(__dirname, pkg.paths.dist, 'fonts/bi')
-                    }
-                ]
-            }),
-            isProd && new WebpackCopy({
-                patterns: [
+                    { from: path.join(__dirname, pkg.paths.src, 'CNAME'), to: path.join(__dirname, pkg.paths.dist) },
+                    { from: path.join(__dirname, pkg.paths.src, 'favicons/favicon.ico'), to: path.join(__dirname, pkg.paths.dist) },
+                    { from: path.join(__dirname, pkg.paths.src, 'favicons'), to: path.join(__dirname, pkg.paths.dist, 'favicons') },
+                    { from: path.join(__dirname, pkg.paths.src, 'svg'), to: path.join(__dirname, pkg.paths.dist, 'svg') },
+                    { from: path.join(__dirname, pkg.paths.src, 'img'), to: path.join(__dirname, pkg.paths.dist, 'img') },
                     // fonts
-                    // { from: `${pkg.paths.src.fonts}/open-sans`, to: 'fonts/open-sans' },
-                    // { from: `${pkg.paths.src.fonts}/inter`, to: 'fonts/inter' },
-                    // bootstrap-icons
-                    { from: `${pkg.paths.npm}/bootstrap-icons/font/fonts`, to: 'fonts/bootstrap-icons' },
-                    { from: `${pkg.paths.npm}/bootstrap-icons/icons`, to: 'svg/bi' }
+                    { from: path.join(__dirname, pkg.paths.npm, 'bootstrap-icons/font/fonts'), to: path.join(__dirname, pkg.paths.dist, 'fonts/bi') },
+                    { from: path.join(__dirname, pkg.paths.src, 'fonts'), to: path.join(__dirname, pkg.paths.dist, 'fonts') }
                 ]
             }),
             !isProd && new webpack.SourceMapDevToolPlugin({

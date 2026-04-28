@@ -54,6 +54,9 @@ $spacers: (
     8: $spacer * 10
 ) !default;
 
+// Fonts
+$font-family-sans-serif: "Inter", system-ui, -apple-system, Roboto !default;
+
 // Modal
 $modal-md: 640px !default;
 $modal-inner-padding: $spacer * 1.25 !default;
