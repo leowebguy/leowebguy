@@ -1,44 +1,52 @@
-import { isDefined, listen, qs } from './helpers.js';
+import { isDefined, listen, qs, setAtt } from './helpers.js';
 import { Modal } from 'bootstrap';
 import axios from 'axios';
+import { load } from 'recaptcha-v3';
 
 (() => {
     // Variables
     const contact = qs('.contact');
     const modal = qs('#contact');
-    const response = qs('[name=cf-turnstile-response]');
+    const captcha = qs('[name=hiddenRecaptcha]');
 
     const form = qs('form[name=contact]');
     const fieldset = qs('fieldset', form);
     const success = qs('.success', form);
     const warning = qs('.warning', form);
-    const turnstile = qs('.turnstile', form);
 
     const query = new URLSearchParams(window.location.search);
+
+    // Recaptcha
+    if (isDefined(captcha))
+        load('6Lfe55gUAAAAALT63VWPk0DsLRlh-cK77Bv0QkVL', {
+            autoHideBadge: true
+        }).then((recaptcha) => {
+            recaptcha.execute('submit').then((t) => {
+                setAtt(captcha, 'value', t);
+            });
+        });
 
     // Btn modal open
     if (isDefined(modal))
         listen(contact, 'click', () => {
             (new Modal(modal)).show();
+            // dataLayer.push({
+            //     'event': 'Modal open btn'
+            // });
         });
 
     // Url modal open
-    if (isDefined(modal) && query && query.has('contact'))
+    if (query && query.has('contact')) {
         (new Modal(modal)).show();
+        // dataLayer.push({
+        //     'event': 'Modal open url'
+        // });
+    }
 
     // Form submit
     if (isDefined(form))
         listen(form, 'submit', (e) => {
             e.preventDefault();
-
-            // Turnstile
-            if (!response.value) {
-                turnstile.classList.remove('d-none');
-                setTimeout(() => turnstile.classList.add('d-none'), 5000);
-                return;
-            }
-
-            // Send email
             const data = new FormData();
             data.append('subj', 'leowebguy | contact');
             data.append('to', 'leowebguy@gmail.com');
@@ -47,21 +55,30 @@ import axios from 'axios';
             data.append('phone', qs('[name=phone]', form).value || '');
             data.append('from', qs('[name=email]', form).value);
             data.append('msg', qs('[name=msg]', form).value);
-            data.append('token', turnstile.value);
+            data.append('token', qs('[name=hiddenRecaptcha]', form).value);
             axios.post('https://api.gaunte.com/sendmail/', data)
                 .then((r) => {
                     if (r.data.result) {
                         form.reset();
                         fieldset.classList.add('d-none');
                         success.classList.remove('d-none');
+                        // dataLayer.push({
+                        //     'event': 'Form'
+                        // });
                     } else {
                         warning.classList.remove('d-none');
                         console.error(r.data.message);
+                        // dataLayer.push({
+                        //     'event': 'Form error'
+                        // });
                     }
                 })
                 .catch((err) => {
                     warning.classList.remove('d-none');
                     console.error(err);
+                    // dataLayer.push({
+                    //     'event': 'Form error'
+                    // });
                 });
         });
 })();
