@@ -81,7 +81,7 @@ module.exports = () => {
             ]
         },
         plugins: [
-            new webpack.ProgressPlugin(),
+            !isProd && new webpack.ProgressPlugin(),
             new Dotenv({
                 expand: true
             }),
