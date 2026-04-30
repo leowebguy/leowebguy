@@ -1,4 +1,4 @@
-.PHONY: ni nu na nci dev prod hot ncu ncuu lint
+.PHONY: ni nu na nci dev prod ncu ncuu lint cert
 .DEFAULT_GOAL := help
 
 ni:
@@ -21,9 +21,6 @@ prod:
 	chmod go+x ./node_modules/.bin/webpack
 	npm run prod
 
-hot:
-	$(ddev) exec npm run hot
-
 ncu:
 	chmod go+x ./node_modules/.bin/ncu
 	./node_modules/.bin/ncu
@@ -34,9 +31,9 @@ ncuu:
 
 lint:
 	chmod go+x ./node_modules/.bin/eslint
-	./node_modules/.bin/eslint './assets/js/**/*.js' --fix
+	./node_modules/.bin/eslint './src/js/**/*.js' --fix
 	chmod go+x ./node_modules/.bin/stylelint
-	./node_modules/.bin/stylelint './assets/scss/**/*.scss' --fix
+	./node_modules/.bin/stylelint './src/scss/**/*.scss' --fix
 
 cert:
 	mkdir ./.ssl

@@ -45,8 +45,7 @@
     "webpack-merge": "^6.0.1"
   },
   "scripts": {
-    "dev": "NODE_ENV=development webpack --config webpack.config.cjs",
-    "hot": "NODE_ENV=development webpack --watch --config webpack.config.cjs",
+    "dev": "NODE_ENV=development webpack --watch --config webpack.config.cjs",
     "prod": "NODE_ENV=production webpack --config webpack.config.cjs"
   },
   "paths": {
