@@ -31,7 +31,7 @@ ncuu:
 
 lint:
 	chmod go+x ./node_modules/.bin/eslint
-	./node_modules/.bin/eslint './src/js/**/*.js' --fix
+	./node_modules/.bin/eslint './src/js/**/*.{js,jsx}' --fix
 	chmod go+x ./node_modules/.bin/stylelint
 	./node_modules/.bin/stylelint './src/scss/**/*.scss' --fix
 

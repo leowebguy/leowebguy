@@ -11,7 +11,7 @@ const webpack = require('webpack'),
     WebpackCopy = require('copy-webpack-plugin'),
     WebpackCssExtract = require('mini-css-extract-plugin'),
     WebpackCssMinimizer = require('css-minimizer-webpack-plugin'),
-    WebpackHandlebars = require('handlebars-webpack-plugin'),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
     WebpackTerser = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
@@ -36,8 +36,8 @@ module.exports = () => {
         module: {
             rules: [
                 {
-                    test: /\.js$/,
-                    exclude: /node-modules/,
+                    test: /\.jsx?$/,
+                    exclude: /node_modules/,
                     use: {
                         loader: 'babel-loader'
                     }
@@ -98,19 +98,17 @@ module.exports = () => {
                     path.join(__dirname, pkg.paths.dist, 'css', '**/*')
                 ]
             }),
-            new WebpackHandlebars({
-                entry: path.join(__dirname, pkg.paths.src, '*.hbs'),
-                output: path.join(__dirname, pkg.paths.dist, '[name].html'),
-                data: {
+            new HtmlWebpackPlugin({
+                template: path.join(__dirname, pkg.paths.src, 'index.html'),
+                filename: 'index.html',
+                inject: false,
+                templateParameters: {
                     isProd: isProd,
                     vendorJS: `js/vendor.js?v=${t}`,
                     appJS: `js/app.js?v=${t}`,
                     appCSS: `css/app.css?v=${t}`,
                     recaptchaKey: process.env.WEBPACK_RECAPTCHA_KEY || '6Lct-SQUAAAAADK1vfAdFWhUCpXmHKsIuBBq3Vjb'
-                },
-                partials: [
-                    path.join(__dirname, pkg.paths.src, 'partials', '*.hbs')
-                ]
+                }
             }),
             new WebpackCssExtract({
                 filename: 'css/[name].css'

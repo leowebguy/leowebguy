@@ -14,10 +14,14 @@
     "@popperjs/core": "^2.11",
     "axios": "^1.19",
     "bootstrap": "^5.3.8",
-    "bootstrap-icons": "^1.13"
+    "bootstrap-icons": "^1.13",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
     "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
+    "@babel/preset-react": "^8.0.1",
     "@eslint/js": "^10.0.1",
     "autoprefixer": "^10.5.4",
     "babel-loader": "^10.1.1",
@@ -32,7 +36,7 @@
     "eslint": "^10.8.0",
     "git-rev-sync": "^3.0.2",
     "glob": "^13.0.6",
-    "handlebars-webpack-plugin": "^2.2.1",
+    "html-webpack-plugin": "^5.6.8",
     "mini-css-extract-plugin": "^2.10.2",
     "npm-check-updates": "^23.0.1",
     "postcss-loader": "^8.2.1",
@@ -53,7 +57,7 @@
   "scripts": {
     "dev": "NODE_ENV=development webpack --watch --config webpack.config.cjs",
     "prod": "NODE_ENV=production webpack --config webpack.config.cjs",
-    "lint": "eslint './src/js/**/*.js' && stylelint './src/scss/**/*.scss'"
+    "lint": "eslint './src/js/**/*.{js,jsx}' && stylelint './src/scss/**/*.scss'"
   },
   "paths": {
     "base": ".",
