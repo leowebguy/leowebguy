@@ -1,0 +1,19 @@
+$name: 'Inter';
+$handle: 'inter';
+$v: 'v20';
+$weights: (
+    '200': 200,
+    'regular': 400,
+    '700': 700
+);
+
+@each $suffix, $weight in $weights {
+    @font-face {
+        font-display: swap;
+        font-family: #{$name};
+        font-style: normal;
+        font-weight: #{$weight};
+        src: url('../fonts/#{$handle}/#{$handle}-#{$v}-latin-#{$suffix}.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+        url('../fonts/#{$handle}/#{$handle}-#{$v}-latin-#{$suffix}.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
+    }
+}

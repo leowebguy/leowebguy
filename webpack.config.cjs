@@ -127,7 +127,8 @@ module.exports = () => {
                     { from: path.join(__dirname, pkg.paths.src, 'svg'), to: path.join(__dirname, pkg.paths.dist, 'svg') },
                     { from: path.join(__dirname, pkg.paths.src, 'img'), to: path.join(__dirname, pkg.paths.dist, 'img') },
                     // fonts
-                    { from: path.join(__dirname, pkg.paths.npm, 'bootstrap-icons/font/fonts'), to: path.join(__dirname, pkg.paths.dist, 'fonts/bi') }
+                    { from: path.join(__dirname, pkg.paths.npm, 'bootstrap-icons/font/fonts'), to: path.join(__dirname, pkg.paths.dist, 'fonts/bi') },
+                    { from: path.join(__dirname, pkg.paths.src, 'fonts'), to: path.join(__dirname, pkg.paths.dist, 'fonts') }
                 ]
             }),
             !isProd && new webpack.SourceMapDevToolPlugin({
