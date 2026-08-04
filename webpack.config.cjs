@@ -15,7 +15,7 @@ const webpack = require('webpack'),
     WebpackTerser = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
-const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
+// const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 
 module.exports = () => {
     const isProd = process.env.NODE_ENV === 'production';
@@ -115,10 +115,10 @@ module.exports = () => {
             new WebpackCssExtract({
                 filename: 'css/[name].css'
             }),
-            new PurgeCSSPlugin({
-                paths: glob.sync(path.join(__dirname, pkg.paths.src, '**/*.hbs'), { nodir: true }),
-                safelist: ['active', 'modal-backdrop', 'fade', 'show']
-            }),
+            // new PurgeCSSPlugin({
+            //     paths: glob.sync(path.join(__dirname, pkg.paths.src, '**/*.hbs'), { nodir: true }),
+            //     safelist: ['active', 'modal-backdrop', 'fade', 'show']
+            // }),
             isProd && new WebpackCopy({
                 patterns: [
                     { from: path.join(__dirname, pkg.paths.src, 'CNAME'), to: path.join(__dirname, pkg.paths.dist) },
@@ -170,7 +170,7 @@ module.exports = () => {
                 ].join('\n')
             }),
             new webpack.DefinePlugin({
-                'process.env.AUTH_TOKEN': JSON.stringify(process.env.AUTH_TOKEN || ''),
+                'process.env.WEBPACK_RECAPTCHA_KEY': JSON.stringify(process.env.WEBPACK_RECAPTCHA_KEY || ''),
                 'process.env.WEBPACK_EMAIL_API_URL': JSON.stringify(process.env.WEBPACK_EMAIL_API_URL || ''),
                 'process.env.WEBPACK_EMAIL_API_KEY': JSON.stringify(process.env.WEBPACK_EMAIL_API_KEY || ''),
                 'process.env.WEBPACK_EMAIL_TO': JSON.stringify(process.env.WEBPACK_EMAIL_TO || '')
