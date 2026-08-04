@@ -15,7 +15,7 @@ const webpack = require('webpack'),
     WebpackTerser = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
-// const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
+const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 
 module.exports = () => {
     const isProd = process.env.NODE_ENV === 'production';
@@ -114,10 +114,23 @@ module.exports = () => {
             new WebpackCssExtract({
                 filename: 'css/[name].css'
             }),
-            // new PurgeCSSPlugin({
-            //     paths: glob.sync(path.join(__dirname, pkg.paths.src, '**/*.hbs'), { nodir: true }),
-            //     safelist: ['active', 'modal-backdrop', 'fade', 'show']
-            // }),
+            isProd && new PurgeCSSPlugin({
+                paths: glob.sync(path.join(__dirname, pkg.paths.src, '**/*.{html,js,jsx}'), { nodir: true }),
+                safelist: {
+                    standard: [
+                        'active',
+                        'fade',
+                        'show',
+                        'collapsing',
+                        'collapsed',
+                        'modal-backdrop',
+                        'modal-open',
+                        'modal-static'
+                    ],
+                    deep: [/modal/, /alert/],
+                    greedy: [/data-bs-theme/]
+                }
+            }),
             isProd && new WebpackCopy({
                 patterns: [
                     { from: path.join(__dirname, pkg.paths.src, 'CNAME'), to: path.join(__dirname, pkg.paths.dist) },
