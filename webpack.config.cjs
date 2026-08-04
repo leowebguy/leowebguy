@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const webpack = require('webpack'),
     pkg = require('./package.json'),
     path = require('path'),
@@ -67,7 +69,6 @@ module.exports = () => {
                                 sassOptions: {
                                     quietDeps: true,
                                     silenceDeprecations: [
-                                        'mixed-decls',
                                         'color-functions',
                                         'global-builtin',
                                         'import'
@@ -104,7 +105,8 @@ module.exports = () => {
                     isProd: isProd,
                     vendorJS: `js/vendor.js?v=${t}`,
                     appJS: `js/app.js?v=${t}`,
-                    appCSS: `css/app.css?v=${t}`
+                    appCSS: `css/app.css?v=${t}`,
+                    recaptchaKey: process.env.WEBPACK_RECAPTCHA_KEY || '6Lct-SQUAAAAADK1vfAdFWhUCpXmHKsIuBBq3Vjb'
                 },
                 partials: [
                     path.join(__dirname, pkg.paths.src, 'partials', '*.hbs')
@@ -166,8 +168,14 @@ module.exports = () => {
                     ` * @copyright      Copyright (c)`,
                     ` */\n`
                 ].join('\n')
+            }),
+            new webpack.DefinePlugin({
+                'process.env.AUTH_TOKEN': JSON.stringify(process.env.AUTH_TOKEN || ''),
+                'process.env.WEBPACK_EMAIL_API_URL': JSON.stringify(process.env.WEBPACK_EMAIL_API_URL || ''),
+                'process.env.WEBPACK_EMAIL_API_KEY': JSON.stringify(process.env.WEBPACK_EMAIL_API_KEY || ''),
+                'process.env.WEBPACK_EMAIL_TO': JSON.stringify(process.env.WEBPACK_EMAIL_TO || '')
             })
-        ],
+        ].filter(Boolean),
         optimization: {
             minimize: isProd,
             minimizer: [

@@ -44,38 +44,47 @@ import axios from 'axios';
                 return;
             }
 
-            const data = new FormData();
-            data.append('subj', 'leowebguy | contact');
-            data.append('to', 'leowebguy@gmail.com');
-            data.append('bcc', null); // do not bcc myself
-            data.append('name', qs('[name=name]', form).value || '');
-            data.append('phone', qs('[name=phone]', form).value || '');
-            data.append('from', qs('[name=email]', form).value);
-            data.append('msg', qs('[name=msg]', form).value);
-            data.append('token', token);
-            axios.post('https://api.gaunte.dev/sendmail/', data)
+            const name = qs('[name=name]', form).value || '';
+            const email = qs('[name=email]', form).value || '';
+            const phone = qs('[name=phone]', form).value || '';
+            const msg = qs('[name=msg]', form).value || '';
+
+            const html = `
+                <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                    <h2 style="border-bottom: 1px solid #ddd; padding-bottom: 10px; color: #333;">Novo Formulário de Contato</h2>
+                    <p><strong>Nome:</strong> ${name}</p>
+                    <p><strong>E-mail:</strong> ${email}</p>
+                    <p><strong>Telefone:</strong> ${phone || 'Não informado'}</p>
+                    <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #28a745; margin-top: 15px; border-radius: 4px;">
+                        <strong>Mensagem:</strong><br>
+                        ${msg.replace(/\n/g, '<br>')}
+                    </div>
+                </div>
+            `;
+
+            axios.post(process.env.WEBPACK_EMAIL_API_URL, {
+                to: process.env.WEBPACK_EMAIL_TO,
+                subject: 'leowebguy | contact',
+                html: html
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-API-Key': process.env.WEBPACK_EMAIL_API_KEY
+                }
+            })
                 .then((r) => {
-                    if (r.data.result) {
+                    if (r.data && r.data.success) {
                         form.reset();
                         fieldset.classList.add('d-none');
                         success.classList.remove('d-none');
-                        // dataLayer.push({
-                        //     'event': 'Form'
-                        // });
                     } else {
                         warning.classList.remove('d-none');
-                        console.error(r.data.message);
-                        // dataLayer.push({
-                        //     'event': 'Form error'
-                        // });
+                        console.error(r.data ? r.data.error : 'Unknown error');
                     }
                 })
                 .catch((err) => {
                     warning.classList.remove('d-none');
                     console.error(err);
-                    // dataLayer.push({
-                    //     'event': 'Form error'
-                    // });
                 });
         });
 })();

@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+ 
 
 // export const isProd = process.env.NODE_ENV === 'production';
 
@@ -14,18 +14,18 @@ export const qs = (selector, parent = document) => {
 //     return document.getElementById(id);
 // };
 
-export const listen = (el, ev, fn) => {
+export const listen = (el = 'document', ev = 'click', fn) => {
     el.addEventListener(ev, fn, false);
 };
 
-// export const listenOnce = (el, ev, fn) => {
+// export const listenOnce = (el = 'document', ev = 'click', fn) => {
 //     el.addEventListener(ev, function listener(e) {
 //         e.target.removeEventListener(e.type, listener);
 //         return fn.call(this, e);
 //     }, {once: true});
 // };
 
-// export const listenAll = (el, s, fn) => {
+// export const listenAll = (el = 'document', s, fn) => {
 //     s.split(',').forEach((e) => {
 //         return el.addEventListener(e, fn, false);
 //     });
