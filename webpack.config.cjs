@@ -67,6 +67,7 @@ module.exports = () => {
                             loader: 'sass-loader',
                             options: {
                                 sassOptions: {
+                                    charset: false,
                                     quietDeps: true,
                                     silenceDeprecations: [
                                         'color-functions',
