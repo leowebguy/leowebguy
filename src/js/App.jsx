@@ -1,6 +1,37 @@
-import { useEffect, useRef, useState } from 'react';
-import { Modal } from 'bootstrap';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Mail, X } from 'lucide-react';
+
+function GithubIcon({ className = "w-5 h-5" }) {
+    return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+             strokeLinejoin="round">
+            <path
+                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+            <path d="M9 18c-4.51 2-5-2-7-2"/>
+        </svg>
+    );
+}
+
+function LinkedinIcon({ className = "w-5 h-5" }) {
+    return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+             strokeLinejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect width="4" height="12" x="2" y="9"/>
+            <circle cx="4" cy="4" r="2"/>
+        </svg>
+    );
+}
+
+function StackOverflowIcon({ className = "w-5 h-5" }) {
+    return (
+        <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M18.986 21.865v-6.404h2.134V24H1.844v-8.539h2.13v6.404h15.012zM6.111 19.731h10.66v-2.136H6.111v2.136zm.292-4.872l10.37 2.477.5-2.083-10.37-2.477-.5 2.083zm1.423-4.754l9.146 5.485 1.083-1.842-9.146-5.485-1.083 1.842zm3.17-4.223l7.098 7.975 1.583-1.411-7.098-7.975-1.583 1.411zm5.712-3.124l-1.921 1.011 4.707 8.948 1.921-1.011-4.707-8.948z"/>
+        </svg>
+    );
+}
 
 const technologies = [
     { name: 'PHP', icon: 'php.svg' },
@@ -41,8 +72,7 @@ const technologies = [
 ];
 
 export default function App() {
-    const modalRef = useRef(null);
-    const modalInstanceRef = useRef(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const [formState, setFormState] = useState({
         name: '',
@@ -54,26 +84,19 @@ export default function App() {
     const [status, setStatus] = useState('idle'); // 'idle' | 'submitting' | 'success' | 'error' | 'captcha-error'
 
     useEffect(() => {
-        if (modalRef.current) {
-            modalInstanceRef.current = new Modal(modalRef.current);
-
-            // Open modal if URL query param contains 'contact'
-            const query = new URLSearchParams(window.location.search);
-            if (query && query.has('contact')) {
-                modalInstanceRef.current.show();
-            }
+        // Open modal if URL query param contains 'contact'
+        const query = new URLSearchParams(window.location.search);
+        if (query && query.has('contact')) {
+            setIsModalOpen(true);
         }
-        return () => {
-            if (modalInstanceRef.current) {
-                modalInstanceRef.current.dispose();
-            }
-        };
     }, []);
 
     const handleOpenModal = () => {
-        if (modalInstanceRef.current) {
-            modalInstanceRef.current.show();
-        }
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
     };
 
     const handleInputChange = (e) => {
@@ -84,14 +107,6 @@ export default function App() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setStatus('submitting');
-
-        // Recaptcha
-        const token = (window.grecaptcha && window.grecaptcha.getResponse()) || '';
-        if (!token || token.length < 10) {
-            setStatus('captcha-error');
-            setTimeout(() => setStatus('idle'), 5000);
-            return;
-        }
 
         const html = `
             <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
@@ -106,22 +121,19 @@ export default function App() {
             </div>
         `;
 
-        axios.post(process.env.WEBPACK_EMAIL_API_URL, {
-            to: process.env.WEBPACK_EMAIL_TO,
+        axios.post(process.env.VITE_EMAIL_API_URL || process.env.WEBPACK_EMAIL_API_URL, {
+            to: process.env.VITE_EMAIL_TO || process.env.WEBPACK_EMAIL_TO,
             subject: 'leowebguy | contact',
             html: html
         }, {
             headers: {
                 'Content-Type': 'application/json',
-                'X-API-Key': process.env.WEBPACK_EMAIL_API_KEY
+                'X-API-Key': process.env.VITE_EMAIL_API_KEY || process.env.WEBPACK_EMAIL_API_KEY
             }
         })
             .then((r) => {
                 if (r.data && r.data.success) {
                     setFormState({ name: '', email: '', phone: '', msg: '' });
-                    if (window.grecaptcha) {
-                        window.grecaptcha.reset();
-                    }
                     setStatus('success');
                 } else {
                     setStatus('error');
@@ -136,139 +148,168 @@ export default function App() {
 
     return (
         <>
-            <div className="container my-3 my-md-6">
-                <div className="p-4 border shadow-lg">
-                    <div className="row align-items-center gap-3 gap-md-0">
-                        <div className="col-lg-4 offset-lg-1 mb-4 mb-lg-0 order-lg-2">
-                            <img src="img/leo.jpg" alt="leowebguy" className="img-fluid" />
+        <div className="container mx-auto px-4 my-6 md:my-12 max-w-5xl">
+            <div className="p-6 md:p-10 bg-slate-800/80 border border-slate-700/80 rounded-2xl shadow-2xl backdrop-blur-sm">
+                <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+                    <div className="w-full lg:w-4/12 order-1 lg:order-2 flex justify-center">
+                        <img src="img/leo.jpg" alt="leowebguy"
+                             className="aspect-square shadow-lg border-2 border-slate-700 w-48 h-48 md:w-64 md:h-64 object-cover"/>
+                    </div>
+                    <div className="w-full lg:w-8/12 order-2 lg:order-1">
+                        <h4 className="text-xl md:text-2xl font-medium leading-relaxed text-slate-100">
+                            Senior AI Development Expert with 14+ years of experience building high-performance web solutions and
+                            integrated AI features for businesses of all sizes, from agile startups to enterprise corporations.
+                        </h4>
+
+                        <div className="my-6 border-t border-slate-700/60 w-full"></div>
+
+                        <div className="flex flex-wrap items-center gap-3">
+                            {technologies.map((tech) => {
+                                if (tech.isDivider) {
+                                    return <div key={tech.name} className="hidden md:block w-full h-0 my-0"></div>;
+                                }
+                                return (
+                                    <img
+                                        key={tech.name}
+                                        alt={tech.name}
+                                        src={`svg/${tech.icon}`}
+                                        className="svg transition-transform hover:scale-110"
+                                        title={tech.name}
+                                    />
+                                );
+                            })}
                         </div>
-                        <div className="col-lg-7 order-lg-1">
-                            <h4>Web Engineer, PHP & Craft CMS expert with 14+ yrs of experience working with clients ranging from small businesses to large corporations.</h4>
 
-                            <div className="d-flex my-3 my-md-4 w-100"></div>
+                        <div className="my-6 border-t border-slate-700/60 w-full"></div>
 
-                            <div className="d-flex flex-wrap gap-2">
-                                {technologies.map((tech) => {
-                                    if (tech.isDivider) {
-                                        return <div key={tech.name} className="d-md-flex d-none w-100"></div>;
-                                    }
-                                    return (
-                                        <img
-                                            key={tech.name}
-                                            alt={tech.name}
-                                            src={`svg/${tech.icon}`}
-                                            className="svg"
-                                            title={tech.name}
-                                        />
-                                    );
-                                })}
-                            </div>
-
-                            <div className="d-flex my-3 my-md-4 w-100"></div>
-
-                            <div className="d-flex flex-row gap-2">
-                                <a href="//github.com/leowebguy" target="_blank" rel="noreferrer" className="btn btn-outline-primary">
-                                    <i className="bi bi-github"></i>
-                                </a>
-                                <a href="//linkedin.com/in/leowebguy" target="_blank" rel="noreferrer" className="btn btn-outline-primary">
-                                    <i className="bi bi-linkedin"></i>
-                                </a>
-                                <a href="//stackoverflow.com/users/3058927/leo-leoncio" target="_blank" rel="noreferrer" className="btn btn-outline-primary">
-                                    <i className="bi bi-stack-overflow"></i>
-                                </a>
-                                <button type="button" onClick={handleOpenModal} className="btn btn-secondary contact">
-                                    <i className="bi bi-envelope-at"></i>
-                                </button>
-                            </div>
+                        <div className="flex flex-row items-center gap-3">
+                            <a
+                                href="//github.com/leowebguy"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center justify-center w-11 h-11 rounded-lg border border-slate-600 bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white hover:border-slate-500 transition-colors"
+                            >
+                                <GithubIcon className="w-5 h-5"/>
+                            </a>
+                            <a
+                                href="//linkedin.com/in/leowebguy"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center justify-center w-11 h-11 rounded-lg border border-slate-600 bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white hover:border-slate-500 transition-colors"
+                            >
+                                <LinkedinIcon className="w-5 h-5"/>
+                            </a>
+                            <a
+                                href="//stackoverflow.com/users/3058927/leo-leoncio"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center justify-center w-11 h-11 rounded-lg border border-slate-600 bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white hover:border-slate-500 transition-colors"
+                            >
+                                <StackOverflowIcon className="w-5 h-5"/>
+                            </a>
+                            <button
+                                type="button"
+                                onClick={handleOpenModal}
+                                className="inline-flex items-center justify-center w-11 h-11 rounded-lg bg-emerald-600 text-white hover:bg-emerald-500 transition-colors shadow-md"
+                            >
+                                <Mail className="w-5 h-5"/>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            {/* Contact Modal */}
-            <div className="modal fade" id="contact" ref={modalRef} tabIndex="-1">
-                <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
-                        <form name="contact" onSubmit={handleSubmit}>
-                            <div className="modal-header bg-secondary">
-                                <h4 className="modal-title text-dark">Reach out</h4>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div className="modal-body">
-                                <fieldset disabled={status === 'submitting'}>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        className="form-control mb-3"
-                                        placeholder="Name (required)"
-                                        maxLength="60"
-                                        autoComplete="name"
-                                        value={formState.name}
-                                        onChange={handleInputChange}
-                                        required
-                                    />
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        className="form-control mb-3"
-                                        placeholder="Email (required)"
-                                        autoComplete="email"
-                                        value={formState.email}
-                                        onChange={handleInputChange}
-                                        required
-                                    />
-                                    <input
-                                        type="tel"
-                                        name="phone"
-                                        className="form-control mb-3"
-                                        placeholder="Phone"
-                                        autoComplete="tel"
-                                        value={formState.phone}
-                                        onChange={handleInputChange}
-                                    />
-                                    <textarea
-                                        name="msg"
-                                        className="form-control mb-3"
-                                        rows="6"
-                                        placeholder="Your message here (required)"
-                                        maxLength="255"
-                                        value={formState.msg}
-                                        onChange={handleInputChange}
-                                        required
-                                    ></textarea>
-                                    <div className="d-flex justify-content-end gap-3 align-items-center">
-                                        <div
-                                            className="g-recaptcha"
-                                            data-sitekey={process.env.WEBPACK_RECAPTCHA_KEY || '6Lct-SQUAAAAADK1vfAdFWhUCpXmHKsIuBBq3Vjb'}
-                                        ></div>
-                                        <button type="submit" className="btn btn-lg btn-secondary px-5">
-                                            {status === 'submitting' ? 'Sending...' : 'Send'}
-                                        </button>
-                                    </div>
-                                </fieldset>
+    {/* Contact Modal */
+    }
+    {
+        isModalOpen && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn">
+                <div className="bg-slate-800 border border-slate-700 rounded-xl shadow-2xl w-full max-w-lg overflow-hidden">
+                    <form name="contact" onSubmit={handleSubmit}>
+                        <div className="flex items-center justify-between p-4 bg-slate-900 border-b border-slate-700">
+                            <h4 className="text-lg font-semibold text-slate-100">Reach out</h4>
+                            <button
+                                type="button"
+                                onClick={handleCloseModal}
+                                className="text-slate-400 hover:text-slate-100 transition-colors p-1 rounded-lg"
+                                aria-label="Close"
+                            >
+                                <X className="w-5 h-5"/>
+                            </button>
+                        </div>
+                        <div className="p-6">
+                            <fieldset disabled={status === 'submitting'} className="space-y-4">
+                                <input
+                                    type="text"
+                                    name="name"
+                                    className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                                    placeholder="Name (required)"
+                                    maxLength="60"
+                                    autoComplete="name"
+                                    value={formState.name}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                                <input
+                                    type="email"
+                                    name="email"
+                                    className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                                    placeholder="Email (required)"
+                                    autoComplete="email"
+                                    value={formState.email}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                                    placeholder="Phone"
+                                    autoComplete="tel"
+                                    value={formState.phone}
+                                    onChange={handleInputChange}
+                                />
+                                <textarea
+                                    name="msg"
+                                    className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all resize-none"
+                                    rows="5"
+                                    placeholder="Your message here (required)"
+                                    maxLength="255"
+                                    value={formState.msg}
+                                    onChange={handleInputChange}
+                                    required
+                                ></textarea>
+                                <div className="flex flex-row items-center justify-end gap-4 pt-2">
+                                    <button
+                                        type="submit"
+                                        className="w-full sm:w-auto px-6 py-2.5 bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-slate-800 transition-colors shadow-md disabled:opacity-50"
+                                    >
+                                        {status === 'submitting' ? 'Sending...' : 'Send'}
+                                    </button>
+                                </div>
+                            </fieldset>
 
-                                {status === 'success' && (
-                                    <div className="alert alert-light success w-100 mt-3">
-                                        Thanks for your message!<br />I'll reach out as soon as possible
-                                    </div>
-                                )}
+                            {status === 'success' && (
+                                <div
+                                    className="p-4 mt-4 bg-emerald-950/60 border border-emerald-700/60 rounded-lg text-emerald-200 text-sm">
+                                    Thanks for your message!<br/>I'll reach out as soon as possible
+                                </div>
+                            )}
 
-                                {status === 'error' && (
-                                    <div className="alert alert-warning warning w-100 mt-3">
-                                        Sorry, something went wrong. Please send an email to leowebguy@gmail.com
-                                    </div>
-                                )}
-
-                                {status === 'captcha-error' && (
-                                    <div className="alert alert-warning captcha w-100 mt-3">
-                                        Please complete the CAPTCHA
-                                    </div>
-                                )}
-                            </div>
-                        </form>
-                    </div>
+                            {status === 'error' && (
+                                <div
+                                    className="p-4 mt-4 bg-amber-950/60 border border-amber-700/60 rounded-lg text-amber-200 text-sm">
+                                    Sorry, something went wrong. Please send an email to leowebguy@gmail.com
+                                </div>
+                            )}
+                        </div>
+                    </form>
                 </div>
             </div>
-        </>
-    );
+        )
+    }
+</>
+)
+    ;
 }
