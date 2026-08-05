@@ -1,4 +1,4 @@
-## Senior AI Development Expert with 14+ years of experience building high-performance web solutions and integrated AI features for businesses of all sizes, from agile startups to enterprise corporations.
+## Senior AI Development Expert with 14+ years of experience building high-performance web solutions for businesses of all sizes, from agile startups to enterprise corporations.
 
 &nbsp;
 
