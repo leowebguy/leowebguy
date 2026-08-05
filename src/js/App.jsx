@@ -120,14 +120,14 @@ export default function App() {
             </div>
         `;
 
-        fetch(process.env.VITE_EMAIL_API_URL || process.env.WEBPACK_EMAIL_API_URL, {
+        fetch(process.env.VITE_EMAIL_API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-API-Key': process.env.VITE_EMAIL_API_KEY || process.env.WEBPACK_EMAIL_API_KEY
+                'X-API-Key': process.env.VITE_EMAIL_API_KEY
             },
             body: JSON.stringify({
-                to: process.env.VITE_EMAIL_TO || process.env.WEBPACK_EMAIL_TO,
+                to: process.env.VITE_EMAIL_TO,
                 subject: 'leowebguy | contact',
                 html: html
             })

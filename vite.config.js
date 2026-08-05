@@ -13,9 +13,9 @@ export default defineConfig(({ mode }) => {
       emptyOutDir: true,
     },
     define: {
-      'process.env.VITE_EMAIL_API_URL': JSON.stringify(env.VITE_EMAIL_API_URL || env.WEBPACK_EMAIL_API_URL || ''),
-      'process.env.VITE_EMAIL_API_KEY': JSON.stringify(env.VITE_EMAIL_API_KEY || env.WEBPACK_EMAIL_API_KEY || ''),
-      'process.env.VITE_EMAIL_TO': JSON.stringify(env.VITE_EMAIL_TO || env.WEBPACK_EMAIL_TO || ''),
+      'process.env.VITE_EMAIL_API_URL': JSON.stringify(env.VITE_EMAIL_API_URL || ''),
+      'process.env.VITE_EMAIL_API_KEY': JSON.stringify(env.VITE_EMAIL_API_KEY || ''),
+      'process.env.VITE_EMAIL_TO': JSON.stringify(env.VITE_EMAIL_TO || ''),
     },
     server: {
       port: 3000,
