@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Mail, X } from 'lucide-react';
 
 function GithubIcon({ className = "w-5 h-5" }) {
@@ -121,23 +120,26 @@ export default function App() {
             </div>
         `;
 
-        axios.post(process.env.VITE_EMAIL_API_URL || process.env.WEBPACK_EMAIL_API_URL, {
-            to: process.env.VITE_EMAIL_TO || process.env.WEBPACK_EMAIL_TO,
-            subject: 'leowebguy | contact',
-            html: html
-        }, {
+        fetch(process.env.VITE_EMAIL_API_URL || process.env.WEBPACK_EMAIL_API_URL, {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-API-Key': process.env.VITE_EMAIL_API_KEY || process.env.WEBPACK_EMAIL_API_KEY
-            }
+            },
+            body: JSON.stringify({
+                to: process.env.VITE_EMAIL_TO || process.env.WEBPACK_EMAIL_TO,
+                subject: 'leowebguy | contact',
+                html: html
+            })
         })
-            .then((r) => {
-                if (r.data && r.data.success) {
+            .then((res) => res.json())
+            .then((data) => {
+                if (data && data.success) {
                     setFormState({ name: '', email: '', phone: '', msg: '' });
                     setStatus('success');
                 } else {
                     setStatus('error');
-                    console.error(r.data ? r.data.error : 'Unknown error');
+                    console.error(data ? data.error : 'Unknown error');
                 }
             })
             .catch((err) => {
@@ -150,10 +152,10 @@ export default function App() {
         <>
         <div className="container mx-auto px-4 my-6 md:my-12 max-w-5xl">
             <div className="p-6 md:p-10 bg-slate-800/80 border border-slate-700/80 rounded-2xl shadow-2xl backdrop-blur-sm">
-                <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+                <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
                     <div className="w-full lg:w-4/12 order-1 lg:order-2 flex justify-center">
                         <img src="img/leo.jpg" alt="leowebguy"
-                             className="aspect-square shadow-lg border-2 border-slate-700 w-48 h-48 md:w-64 md:h-64 object-cover"/>
+                             className="aspect-square shadow-lg border-2 border-slate-700 w-80 h-80 md:w-64 md:h-64 object-cover"/>
                     </div>
                     <div className="w-full lg:w-8/12 order-2 lg:order-1">
                         <h4 className="text-xl md:text-2xl font-medium leading-relaxed text-slate-100">
@@ -163,7 +165,7 @@ export default function App() {
 
                         <div className="my-6 border-t border-slate-700/60 w-full"></div>
 
-                        <div className="flex flex-wrap items-center gap-3">
+                        <div className="flex flex-wrap items-center gap-2">
                             {technologies.map((tech) => {
                                 if (tech.isDivider) {
                                     return <div key={tech.name} className="hidden md:block w-full h-0 my-0"></div>;

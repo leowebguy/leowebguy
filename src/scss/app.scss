@@ -32,6 +32,8 @@ $weights: (
     Custom Background & Styles
 ==================================== */
 body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-weight: 400;
     background-image: url('/img/pattern1.png');
     background-repeat: repeat;
     background-position: center;

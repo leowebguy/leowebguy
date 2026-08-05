@@ -6,66 +6,26 @@
     "email": "leowebguy@gmail.com",
     "homepage": "https://github.com/leowebguy/"
   },
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "license": "proprietary",
   "dependencies": {
-    "axios": "^1.19",
     "lucide-react": "^1.28.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
     "@vitejs/plugin-react": "^6.0.5",
     "autoprefixer": "^10.5.4",
-    "dotenv": "^17.4.2",
-    "eslint": "^10.8.0",
-    "git-rev-sync": "^3.0.2",
-    "glob": "^13.0.6",
-    "npm-check-updates": "^23.0.1",
     "postcss": "^8.5.25",
     "sass": "^1.102.0",
-    "stylelint": "^17.14.1",
-    "stylelint-config-standard": "^40.0.0",
-    "stylelint-config-standard-scss": "^17.0.0",
     "tailwindcss": "^3.4.19",
     "vite": "^8.2.0"
   },
   "scripts": {
     "dev": "vite",
     "prod": "vite build",
-    "preview": "vite preview",
-    "lint": "eslint './src/js/**/*.{js,jsx}' && stylelint './src/scss/**/*.scss'"
-  },
-  "paths": {
-    "base": ".",
-    "npm": "./node_modules",
-    "src": "./src",
-    "dist": "./dist"
-  },
-  "manifest": {
-    "name": "leowebguy",
-    "short_name": "leowebguy",
-    "display": "browser",
-    "description": "",
-    "icons": [
-      {
-        "src": "/favicons/favicon-16x16.png",
-        "sizes": "16x16",
-        "type": "image/png"
-      },
-      {
-        "src": "/favicons/favicon-32x32.png",
-        "sizes": "32x32",
-        "type": "image/png"
-      },
-      {
-        "src": "/favicons/favicon-96x96.png",
-        "sizes": "70x70",
-        "type": "image/png"
-      }
-    ]
+    "preview": "vite preview"
   }
 }
