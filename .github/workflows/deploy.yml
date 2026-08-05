@@ -1,44 +1,46 @@
-name: deploy
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
       - main
-    paths-ignore:
-      - 'dist'
-      - 'readme.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 #env:
 #  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 #  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
     steps:
       - uses: actions/checkout@v6
+
       - uses: actions/setup-node@v6
         with:
           node-version: '24'
-          cache: 'npm'
-          cache-dependency-path: |
-            package-lock.json
-            .github/workflows/main.yml
-      - run: npm ci --no-audit --legacy-peer-deps
-      - run: npm run prod
+
+      - run: npm ci
+
+      - run: npm run build
         env:
           VITE_RECAPTCHA_KEY: "6Lct-SQUAAAAADK1vfAdFWhUCpXmHKsIuBBq3Vjb"
           VITE_EMAIL_API_URL: "https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-86527741-6118-4953-a5b7-46c827b1a71a/email/send"
           VITE_EMAIL_API_KEY: "935f2c4b-540a-4a70-a3e7-248e898078f7"
           VITE_EMAIL_TO: "lemmleoncio@gmail.com"
           GITHUB_RUN_ID: ${{ github.run_id }}
+
       - uses: actions/upload-pages-artifact@v5
         with:
-          path: ./dist
+          path: './dist'
+
       - uses: actions/deploy-pages@v5
