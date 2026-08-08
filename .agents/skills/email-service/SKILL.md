@@ -1,63 +1,63 @@
 ---
 name: email-service
-description: Guia de implementação e documentação de uso do Email Service, cobrindo as variáveis de ambiente VITE_EMAIL_API_URL, VITE_EMAIL_API_KEY e VITE_EMAIL_TO, além das funções de envio de notificações e confirmações de agendamento.
+description: Implementation guide and usage documentation for the Email Service, covering environment variables VITE_EMAIL_API_URL, VITE_EMAIL_API_KEY, and VITE_EMAIL_TO.
 ---
 
-# Email Service — Guia de Integração e Uso
+# Email Service — Integration and Usage Guide
 
-Esta Skill fornece a documentação sobre o funcionamento do serviço de e-mail ([`emailService.ts`](file:///Users/leo/Github/rdsesthetique/src/services/emailService.ts))
+This Skill provides documentation on how the email service ([`email.ts`](file:///Users/leo/Github/perfectpavers/src/services/email.ts)) operates within the project.
 
-O serviço conecta-se com um microserviço de envio de e-mails hospedado no DigitalOcean Functions utilizando a API do Resend.
+The service connects to an email dispatch microservice hosted on DigitalOcean Functions using the Resend API.
 
 ---
 
-## 🔑 Variáveis de Ambiente
+## 🔑 Environment Variables
 
-O serviço utiliza as seguintes variáveis do Vite (prefixadas com `VITE_`) para sua configuração. Se não definidas, o serviço recorre a valores padrão (*fallback*):
+The service uses the following Vite environment variables (prefixed with `VITE_`) for its configuration. If not defined, the service falls back to default values:
 
 ### 1. `VITE_EMAIL_API_URL`
-* **Descrição:** A URL do endpoint do microserviço HTTP encarregado de despachar os e-mails.
-* **Valor Padrão (Fallback):** `https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-86527741-6118-4953-a5b7-46c827b1a71a/email/send`
-* **Exemplo de Configuração `.env`:**
+* **Description:** The endpoint URL of the HTTP microservice responsible for dispatching emails.
+* **Default Value (Fallback):** `https://resend-mailer-app-i2w6i.ondigitalocean.app/email/send`
+* **Example `.env` Configuration:**
   ```env
-  VITE_EMAIL_API_URL=https://sua-url-de-api-digitalocean/email/send
+  VITE_EMAIL_API_URL=https://your-digitalocean-api-url/email/send
   ```
 
 ### 2. `VITE_EMAIL_API_KEY`
-* **Descrição:** A chave de API secreta exigida para autenticação com o microserviço. Ela é enviada tanto no cabeçalho `X-API-Key` quanto no corpo da requisição no parâmetro `__header_x_api_key`.
-* **Valor Padrão (Fallback):** `935f2c4b-540a-4a70-a3e7-248e898078f7`
-* **Exemplo de Configuração `.env`:**
+* **Description:** The secret API key required for authentication with the microservice. It is sent both in the `X-API-Key` header and in the request body as `__header_x_api_key`.
+* **Default Value (Fallback):** `935f2c4b-540a-4a70-a3e7-248e898078f7`
+* **Example `.env` Configuration:**
   ```env
-  VITE_EMAIL_API_KEY=seu-token-da-api-aqui
+  VITE_EMAIL_API_KEY=your-api-token-here
   ```
 
 ### 3. `VITE_EMAIL_TO`
-* **Descrição:** O endereço de e-mail administrativo do salão que receberá as notificações de novas reservas realizadas no site.
-* **Valor Padrão (Fallback):** `lemmleoncio@gmail.com`
-* **Exemplo de Configuração `.env`:**
+* **Description:** The administrative email address that receives notifications for new estimate requests submitted on the site.
+* **Default Value (Fallback):** `lemmleoncio@gmail.com`
+* **Example `.env` Configuration:**
   ```env
-  VITE_EMAIL_TO=admin@rds-esthetique.ch
+  VITE_EMAIL_TO=admin@perfectpaversflorida.com
   ```
 
 ---
 
-## 🛠️ Funções Exportadas
+## 🛠️ Exported Functions
 
 ### 1. `sendEmail`
-Função de baixo nível para envio de e-mails genéricos.
+Low-level function for sending generic emails.
 
 ```typescript
-import { sendEmail } from '@/services/emailService';
+import { sendEmail } from '@/services/email';
 
 await sendEmail({
-  to: 'cliente@email.com',
-  subject: 'Assunto do E-mail',
-  html: '<p>Conteúdo HTML</p>',
-  replyTo: 'contato@rds-esthetique.ch' // Opcional
+  to: 'client@email.com',
+  subject: 'Email Subject',
+  html: '<p>HTML Content</p>',
+  replyTo: 'contact@perfectpaversflorida.com' // Optional
 });
 ```
 
-* **Interface de Parâmetros:**
+* **Parameter Interface:**
   ```typescript
   export interface SendEmailParams {
     to: string;
@@ -69,46 +69,41 @@ await sendEmail({
 
 ---
 
-### 2. `sendAppointmentEmails`
-Função orquestradora para fluxos de agendamentos. Quando um agendamento é efetuado, ela realiza duas ações:
-1. **Notifica o Administrador (`VITE_EMAIL_TO`):** Envia um e-mail detalhado sobre o cliente e soin agendado. O campo `replyTo` é preenchido com o e-mail do cliente para facilitar a resposta direta.
-2. **Confirmação para o Cliente:** Envia um e-mail com visual premium confirmando a recepção da solicitação e os detalhes do agendamento (soin, data, hora, código de confirmação).
+### 2. `sendEstimateNotification`
+Orchestrator function for estimate request workflows. When an estimate request is submitted, it notifies the administrator (`VITE_EMAIL_TO`) with detailed customer and project information. The `replyTo` field is set to the customer's email address for easy direct replies.
 
 ```typescript
-import { sendAppointmentEmails } from '@/services/emailService';
+import { sendEstimateNotification } from '@/services/email';
 
-await sendAppointmentEmails({
-  confirmationId: 'RDS-12345',
-  fullName: 'Marie Dupont',
-  email: 'marie.dupont@example.com',
-  phone: '+41 78 123 45 67',
-  serviceName: 'Soin Hydrafacial',
-  date: '2026-08-10',
-  timeSlot: '14:00',
-  message: 'Preferência por sala silenciosa' // Opcional
+await sendEstimateNotification({
+  fullName: 'John Doe',
+  email: 'john.doe@example.com',
+  phone: '(954) 555-0199',
+  serviceType: 'Brick Paver Driveway',
+  address: 'Fort Lauderdale, FL',
+  notes: 'Interested in travertine driveway pavers.' // Optional
 });
 ```
 
-* **Interface de Dados:**
+* **Data Interface:**
   ```typescript
-  export interface BookingEmailData {
-    confirmationId: string;
+  export interface EstimateFormData {
     fullName: string;
     email: string;
     phone: string;
-    serviceName: string;
-    date: string;
-    timeSlot: string;
-    message?: string;
+    serviceType: string;
+    address?: string;
+    notes?: string;
   }
   ```
 
 ---
 
-## 📧 Layout e Templates de E-mail
+## 📧 Email Layout and Templates
 
-Os e-mails gerados possuem estilização inline baseada na paleta de cores institucional definida nas diretrizes visuais ([`AGENTS.md`](file:///Users/leo/Github/rdsesthetique/agents.md)):
-- **Fundo Principal (Cream/Sand):** `#FBF9F5`
-- **Texto Principal (Dark Charcoal):** `#2C2825`
-- **Destaques e Bordas (Gold/Champagne):** `#B89759` e `#E8DFC9`
-- **Tipografia:** Arial e fontes serifadas para cabeçalhos (como Georgia).
+The generated emails use inline styling aligned with the brand design guidelines ([`AGENTS.md`](file:///Users/leo/Github/perfectpavers/agents.md)):
+- **Primary Header Gradient:** `#144377` to `#0d2c52`
+- **Body Background:** `#f4f7fb`
+- **Container Background:** `#ffffff`
+- **Primary Text:** `#1e293b`
+- **Typography:** Arial, Helvetica, and sans-serif fonts.

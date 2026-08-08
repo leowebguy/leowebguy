@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { X } from 'lucide-react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { ContactFormData } from '../types';
 import { sendContactEmail } from '../services/email';
 
@@ -7,6 +8,8 @@ interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_KEY || '';
 
 export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   const [formState, setFormState] = useState<ContactFormData>({
@@ -16,7 +19,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
     msg: '',
   });
 
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaError, setCaptchaError] = useState<boolean>(false);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   if (!isOpen) return null;
 
@@ -25,14 +31,29 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
     setFormState((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleCaptchaChange = (token: string | null) => {
+    setCaptchaToken(token);
+    if (token) {
+      setCaptchaError(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (RECAPTCHA_SITE_KEY && !captchaToken) {
+      setCaptchaError(true);
+      return;
+    }
+
     setStatus('submitting');
 
     const result = await sendContactEmail(formState);
 
     if (result.success) {
       setFormState({ name: '', email: '', phone: '', msg: '' });
+      setCaptchaToken(null);
+      recaptchaRef.current?.reset();
       setStatus('success');
     } else {
       setStatus('error');
@@ -96,10 +117,28 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 onChange={handleInputChange}
                 required
               ></textarea>
+
+              {RECAPTCHA_SITE_KEY && (
+                <div className="flex flex-col items-center justify-center pt-2">
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    sitekey={RECAPTCHA_SITE_KEY}
+                    theme="dark"
+                    onChange={handleCaptchaChange}
+                  />
+                  {captchaError && (
+                    <p className="text-rose-400 text-xs mt-2">
+                      Please complete the reCAPTCHA verification.
+                    </p>
+                  )}
+                </div>
+              )}
+
               <div className="flex flex-row items-center justify-end gap-4 pt-2">
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-6 py-2.5 bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-slate-800 transition-colors shadow-md disabled:opacity-50"
+                  disabled={status === 'submitting' || (Boolean(RECAPTCHA_SITE_KEY) && !captchaToken)}
+                  className="w-full sm:w-auto px-6 py-2.5 bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-slate-800 transition-colors shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {status === 'submitting' ? 'Sending...' : 'Send'}
                 </button>
@@ -123,3 +162,4 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
     </div>
   );
 };
+
