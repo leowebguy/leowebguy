@@ -9,6 +9,8 @@ const EMAIL_TO = import.meta.env.VITE_EMAIL_TO || 'leowebguy@gmail.com';
  */
 export async function sendEmail(params: EmailParams): Promise<EmailResponse> {
   try {
+    const replyTo = params.replyTo || params.reply_to;
+
     const response = await fetch(API_URL, {
       method: 'POST',
       headers: {
@@ -19,7 +21,11 @@ export async function sendEmail(params: EmailParams): Promise<EmailResponse> {
         to: params.to,
         subject: params.subject,
         html: params.html,
-        ...(params.replyTo ? { replyTo: params.replyTo } : {}),
+        ...(replyTo ? {
+          replyTo: replyTo,
+          reply_to: replyTo,
+          reply_to_email: replyTo,
+        } : {}),
       }),
     });
 

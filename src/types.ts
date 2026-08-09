@@ -16,6 +16,7 @@ export interface EmailParams {
   subject: string;
   html: string;
   replyTo?: string;
+  reply_to?: string;
 }
 
 export interface EmailResponse {
