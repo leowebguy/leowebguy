@@ -1,0 +1,26 @@
+Loop through these folders and run the following prompt
+
+> leowebguy
+> 3yousport
+> cornerstone
+> dabsolute
+> mademoiselle
+> mcgcflorida
+> perfectpavers
+> rdsesthetique
+> tabuleiro
+> villageski
+
+Explicitly send the replyTo = data.email in the playload for the email service.
+Remove the reply_to from the payload.
+
+Example:
+
+{
+    to: VITE_EMAIL_TO,
+    subject: `my subject`,
+    html,
+    replyTo: data.email
+}
+
+Rename `emailService.ts` to `email.ts`

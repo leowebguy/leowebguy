@@ -9,7 +9,7 @@ const EMAIL_TO = import.meta.env.VITE_EMAIL_TO || 'leowebguy@gmail.com';
  */
 export async function sendEmail(params: EmailParams): Promise<EmailResponse> {
   try {
-    const replyTo = params.replyTo || params.reply_to;
+    const replyTo = params.replyTo;
 
     const payload: Record<string, any> = {
       to: params.to,
@@ -19,8 +19,6 @@ export async function sendEmail(params: EmailParams): Promise<EmailResponse> {
 
     if (replyTo) {
       payload.replyTo = replyTo;
-      payload.reply_to = replyTo;
-      payload.email = replyTo;
     }
 
     if (params.recaptchaToken) {
@@ -84,7 +82,6 @@ export async function sendContactEmail(contactData: {
     subject: 'leowebguy | contact',
     html,
     replyTo: contactData.email,
-    reply_to: contactData.email,
     ...(contactData.recaptchaToken ? { recaptchaToken: contactData.recaptchaToken } : {}),
   });
 }
