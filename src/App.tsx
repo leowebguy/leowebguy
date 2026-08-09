@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Mail } from 'lucide-react';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { GithubIcon, LinkedinIcon, StackOverflowIcon } from './components/Icons';
 import { TechStack } from './components/TechStack';
 import { ContactModal } from './components/ContactModal';
 import { Technology } from './types';
+
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_KEY || '';
 
 const technologies: Technology[] = [
   { name: 'PHP', icon: 'php.svg' },
@@ -55,7 +58,7 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <GoogleReCaptchaProvider reCaptchaKey={RECAPTCHA_SITE_KEY}>
       <div className="container mx-auto px-4 my-6 md:my-12 max-w-5xl">
         <div className="p-6 md:p-10 bg-slate-800/80 border border-slate-700/80 rounded-2xl shadow-2xl backdrop-blur-sm">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
@@ -116,6 +119,7 @@ export default function App() {
       </div>
 
       <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-    </>
+    </GoogleReCaptchaProvider>
   );
 }
+

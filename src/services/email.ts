@@ -50,6 +50,7 @@ export async function sendContactEmail(contactData: {
   email: string;
   phone?: string;
   msg: string;
+  recaptchaToken?: string;
 }): Promise<EmailResponse> {
   const html = `
     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
