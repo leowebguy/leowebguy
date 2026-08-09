@@ -11,22 +11,30 @@ export async function sendEmail(params: EmailParams): Promise<EmailResponse> {
   try {
     const replyTo = params.replyTo || params.reply_to;
 
+    const payload: Record<string, any> = {
+      to: params.to,
+      subject: params.subject,
+      html: params.html,
+    };
+
+    if (replyTo) {
+      payload.replyTo = replyTo;
+      payload.reply_to = replyTo;
+      payload.email = replyTo;
+    }
+
+    if (params.recaptchaToken) {
+      payload.recaptchaToken = params.recaptchaToken;
+      payload.__recaptcha_token = params.recaptchaToken;
+    }
+
     const response = await fetch(API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'X-API-Key': API_KEY,
       },
-      body: JSON.stringify({
-        to: params.to,
-        subject: params.subject,
-        html: params.html,
-        ...(replyTo ? {
-          replyTo: replyTo,
-          reply_to: replyTo,
-          reply_to_email: replyTo,
-        } : {}),
-      }),
+      body: JSON.stringify(payload),
     });
 
     const data = await response.json();
@@ -76,5 +84,7 @@ export async function sendContactEmail(contactData: {
     subject: 'leowebguy | contact',
     html,
     replyTo: contactData.email,
+    reply_to: contactData.email,
+    ...(contactData.recaptchaToken ? { recaptchaToken: contactData.recaptchaToken } : {}),
   });
 }

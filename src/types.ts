@@ -17,6 +17,7 @@ export interface EmailParams {
   html: string;
   replyTo?: string;
   reply_to?: string;
+  recaptchaToken?: string;
 }
 
 export interface EmailResponse {
