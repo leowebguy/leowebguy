@@ -43,10 +43,16 @@ The service uses the following Vite environment variables (prefixed with `VITE_`
 
 ## 🔒 reCAPTCHA & Email Fetch Usage Instructions
 
-When submitting emails from the website form, generate a reCAPTCHA token using `grecaptcha.execute` with `VITE_RECAPTCHA_KEY` and include `recaptchaToken` in the payload sent to `VITE_EMAIL_API_URL`:
+When submitting emails from the website form, acquire a reCAPTCHA token using `react-google-recaptcha-v3` (`useGoogleReCaptcha()`) or `grecaptcha.execute(import.meta.env.VITE_RECAPTCHA_KEY || '', { action: 'submit' })`, and pass `recaptchaToken` to the send email function:
 
 ```javascript
-const recaptchaToken = await grecaptcha.execute('VITE_RECAPTCHA_KEY', { action: 'submit' });
+// Using react-google-recaptcha-v3 hook in components:
+const { executeRecaptcha } = useGoogleReCaptcha();
+const recaptchaToken = executeRecaptcha ? await executeRecaptcha('submit') : undefined;
+
+// Or direct grecaptcha execution:
+// const siteKey = import.meta.env.VITE_RECAPTCHA_KEY || '';
+// const recaptchaToken = await grecaptcha.execute(siteKey, { action: 'submit' });
 
 const response = await fetch(API_URL, {
   method: 'POST',
@@ -59,8 +65,7 @@ const response = await fetch(API_URL, {
     subject,
     html,
     replyTo,
-    __header_x_api_key: API_KEY,
-    recaptchaToken: recaptchaToken
+    recaptchaToken
   }),
 });
 ```
