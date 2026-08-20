@@ -1,3 +1,4 @@
+declare const grecaptcha: any;
 import { EmailParams, EmailResponse } from '../types';
 
 const API_URL = import.meta.env.VITE_EMAIL_API_URL || 'https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-86527741-6118-4953-a5b7-46c827b1a71a/email/send';
@@ -25,6 +26,8 @@ export async function sendEmail(params: EmailParams): Promise<EmailResponse> {
       payload.recaptchaToken = params.recaptchaToken;
       payload.__recaptcha_token = params.recaptchaToken;
     }
+
+    const recaptchaToken = await grecaptcha.execute('VITE_RECAPTCHA_KEY', { action: 'submit' });
 
     const response = await fetch(API_URL, {
       method: 'POST',
