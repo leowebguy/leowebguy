@@ -27,8 +27,6 @@ export async function sendEmail(params: EmailParams): Promise<EmailResponse> {
       payload.__recaptcha_token = params.recaptchaToken;
     }
 
-    const recaptchaToken = await grecaptcha.execute('VITE_RECAPTCHA_KEY', { action: 'submit' });
-
     const response = await fetch(API_URL, {
       method: 'POST',
       headers: {
