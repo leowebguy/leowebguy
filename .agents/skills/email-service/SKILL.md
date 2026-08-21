@@ -5,7 +5,7 @@ description: Implementation guide and usage documentation for the Email Service,
 
 # Email Service — Integration and Usage Guide
 
-This Skill provides documentation on how the email service ([`email.ts`](file:///Users/leo/Github/perfectpavers/src/services/email.ts)) operates within the project.
+This Skill provides documentation on how the email service `src/services/email.ts` operates within the project.
 
 The service connects to an email dispatch microservice hosted on DigitalOcean Functions using the Resend API.
 
@@ -32,7 +32,7 @@ The service uses the following Vite environment variables (prefixed with `VITE_`
   ```
 
 ### 3. `VITE_EMAIL_TO`
-* **Description:** The administrative email address that receives notifications for new estimate requests submitted on the site.
+* **Description:** The administrative email address that receives notifications for new requests submitted on the site.
 * **Default Value (Fallback):** `lemmleoncio@gmail.com`
 * **Example `.env` Configuration:**
   ```env
@@ -43,7 +43,7 @@ The service uses the following Vite environment variables (prefixed with `VITE_`
 
 ## 🔒 reCAPTCHA & Email Fetch Usage Instructions
 
-When submitting emails from the website form, acquire a reCAPTCHA token using `react-google-recaptcha-v3` (`useGoogleReCaptcha()`) or `grecaptcha.execute(import.meta.env.VITE_RECAPTCHA_KEY || '', { action: 'submit' })`, and pass `recaptchaToken` to the send email function:
+When submitting emails from the website form, acquire a reCAPTCHA token using `react-google-recaptcha-v3` (`useGoogleReCaptcha()`) and pass `recaptchaToken` to the send email function:
 
 ```javascript
 // Using react-google-recaptcha-v3 hook in components:
@@ -100,39 +100,9 @@ await sendEmail({
 
 ---
 
-### 2. `sendEstimateNotification`
-Orchestrator function for estimate request workflows. When an estimate request is submitted, it notifies the administrator (`VITE_EMAIL_TO`) with detailed customer and project information. The `replyTo` field is set to the customer's email address for easy direct replies.
-
-```typescript
-import { sendEstimateNotification } from '@/services/email';
-
-await sendEstimateNotification({
-  fullName: 'John Doe',
-  email: 'john.doe@example.com',
-  phone: '(954) 555-0199',
-  serviceType: 'Brick Paver Driveway',
-  address: 'Fort Lauderdale, FL',
-  notes: 'Interested in travertine driveway pavers.' // Optional
-});
-```
-
-* **Data Interface:**
-  ```typescript
-  export interface EstimateFormData {
-    fullName: string;
-    email: string;
-    phone: string;
-    serviceType: string;
-    address?: string;
-    notes?: string;
-  }
-  ```
-
----
-
 ## 📧 Email Layout and Templates
 
-The generated emails use inline styling aligned with the brand design guidelines ([`AGENTS.md`](file:///Users/leo/Github/perfectpavers/agents.md)):
+The generated emails use inline styling aligned with the brand design guidelines `agents.md`:
 - **Primary Header Gradient:** `#144377` to `#0d2c52`
 - **Body Background:** `#f4f7fb`
 - **Container Background:** `#ffffff`
