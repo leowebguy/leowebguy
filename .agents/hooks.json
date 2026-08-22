@@ -1,0 +1,11 @@
+{
+  "telemetry-logger": {
+    "Stop": [
+      {
+        "type": "command",
+        "command": "node ./telemetry.js",
+        "timeout": 5
+      }
+    ]
+  }
+}
