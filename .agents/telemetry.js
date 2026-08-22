@@ -322,7 +322,8 @@ async function main() {
     const conversationId = payload.conversationId || '';
     const modelName = payload.modelName || 'gemini-3.6-flash';
 
-    const workspaceRoot = (payload.workspacePaths && payload.workspacePaths[0]) || path.resolve(process.cwd(), '..');
+    const workspaceRoot = (payload.workspacePaths && payload.workspacePaths[0])
+      || (fs.existsSync(path.join(process.cwd(), '.env')) ? process.cwd() : path.resolve(process.cwd(), '..'));
     const envFile = fs.existsSync(path.join(workspaceRoot, '.env'))
       ? path.join(workspaceRoot, '.env')
       : path.join(process.cwd(), '.env');
