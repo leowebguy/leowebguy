@@ -17,14 +17,14 @@ The service uses the following Vite environment variables (prefixed with `VITE_`
 
 ### 1. `VITE_EMAIL_API_URL`
 * **Description:** The endpoint URL of the HTTP microservice responsible for dispatching emails.
-* **Default Value (Fallback):** `https://resend-mailer-app-i2w6i.ondigitalocean.app/email/send`
+* **Default Value (Fallback):** `https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-86527741-6118-4953-a5b7-46c827b1a71a/email/send`
 * **Example `.env` Configuration:**
   ```env
-  VITE_EMAIL_API_URL=https://your-digitalocean-api-url/email/send
+  VITE_EMAIL_API_URL=https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-86527741-6118-4953-a5b7-46c827b1a71a/email/send
   ```
 
 ### 2. `VITE_EMAIL_API_KEY`
-* **Description:** The secret API key required for authentication with the microservice. It is sent both in the `X-API-Key` header and in the request body as `__header_x_api_key`.
+* **Description:** The secret API key required for authentication with the microservice. It is sent both in the `X-API-Key` header and in the request payload.
 * **Default Value (Fallback):** `935f2c4b-540a-4a70-a3e7-248e898078f7`
 * **Example `.env` Configuration:**
   ```env
@@ -32,11 +32,11 @@ The service uses the following Vite environment variables (prefixed with `VITE_`
   ```
 
 ### 3. `VITE_EMAIL_TO`
-* **Description:** The administrative email address that receives notifications for new requests submitted on the site.
-* **Default Value (Fallback):** `lemmleoncio@gmail.com`
+* **Description:** The administrative email address that receives notifications for new contact form submissions.
+* **Default Value (Fallback):** `leowebguy@gmail.com`
 * **Example `.env` Configuration:**
   ```env
-  VITE_EMAIL_TO=admin@perfectpaversflorida.com
+  VITE_EMAIL_TO=leowebguy@gmail.com
   ```
 
 ---
@@ -45,28 +45,17 @@ The service uses the following Vite environment variables (prefixed with `VITE_`
 
 When submitting emails from the website form, acquire a reCAPTCHA token using `react-google-recaptcha-v3` (`useGoogleReCaptcha()`) and pass `recaptchaToken` to the send email function:
 
-```javascript
+```typescript
 // Using react-google-recaptcha-v3 hook in components:
 const { executeRecaptcha } = useGoogleReCaptcha();
 const recaptchaToken = executeRecaptcha ? await executeRecaptcha('submit') : undefined;
 
-// Or direct grecaptcha execution:
-// const siteKey = import.meta.env.VITE_RECAPTCHA_KEY || '';
-// const recaptchaToken = await grecaptcha.execute(siteKey, { action: 'submit' });
-
-const response = await fetch(API_URL, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'X-API-Key': API_KEY,
-  },
-  body: JSON.stringify({
-    to,
-    subject,
-    html,
-    replyTo,
-    recaptchaToken
-  }),
+await sendContactEmail({
+  name: 'John Doe',
+  email: 'john@example.com',
+  phone: '555-123-4567',
+  msg: 'Hello, I need assistance with a project.',
+  recaptchaToken
 });
 ```
 
@@ -74,27 +63,50 @@ const response = await fetch(API_URL, {
 
 ## 🛠️ Exported Functions
 
-### 1. `sendEmail`
+### 1. `sendEmail(params: EmailParams): Promise<EmailResponse>`
 Low-level function for sending generic emails.
 
 ```typescript
 import { sendEmail } from '@/services/email';
 
 await sendEmail({
-  to: 'client@email.com',
+  to: 'recipient@email.com',
   subject: 'Email Subject',
   html: '<p>HTML Content</p>',
-  replyTo: 'contact@perfectpaversflorida.com' // Optional
+  replyTo: 'contact@example.com',
+  recaptchaToken: 'token' // Optional
 });
 ```
 
-* **Parameter Interface:**
+### 2. `sendContactEmail(contactData): Promise<EmailResponse>`
+High-level function for sending contact form submissions directly to `VITE_EMAIL_TO` (`leowebguy@gmail.com`) with styled HTML output.
+
+```typescript
+import { sendContactEmail } from '@/services/email';
+
+await sendContactEmail({
+  name: 'Sender Name',
+  email: 'sender@email.com',
+  phone: '123-456-7890',
+  msg: 'Message content',
+  recaptchaToken: 'token'
+});
+```
+
+* **Parameter Interfaces (`src/types.ts`):**
   ```typescript
-  export interface SendEmailParams {
+  export interface EmailParams {
     to: string;
     subject: string;
     html: string;
     replyTo?: string;
+    recaptchaToken?: string;
+  }
+
+  export interface EmailResponse {
+    success: boolean;
+    data?: any;
+    error?: string;
   }
   ```
 
@@ -102,9 +114,8 @@ await sendEmail({
 
 ## 📧 Email Layout and Templates
 
-The generated emails use inline styling aligned with the brand design guidelines `agents.md`:
-- **Primary Header Gradient:** `#144377` to `#0d2c52`
-- **Body Background:** `#f4f7fb`
-- **Container Background:** `#ffffff`
-- **Primary Text:** `#1e293b`
-- **Typography:** Arial, Helvetica, and sans-serif fonts.
+The generated contact email template uses clean inline styling:
+- **Heading:** Novo Formulário de Contato (`#333`)
+- **Container / Message Box:** Background `#f9f9f9`, border left `#28a745`
+- **Typography:** Arial, sans-serif, `1.6` line-height
+
