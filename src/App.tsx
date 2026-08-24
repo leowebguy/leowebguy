@@ -62,11 +62,11 @@ export default function App() {
       <div className="container mx-auto px-4 my-6 md:my-12 max-w-5xl">
         <div className="p-6 md:p-10 bg-slate-800/80 border border-slate-700/80 rounded-2xl shadow-2xl backdrop-blur-sm">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-            <div className="w-full lg:w-4/12 order-1 lg:order-2 flex justify-center">
+            <div className="w-full lg:w-4/12 order-1 lg:order-2 flex justify-center md:justify-end">
               <img
                 src="/images/leo.jpg"
                 alt="leowebguy"
-                className="aspect-square shadow-lg border-2 border-slate-700 w-80 h-80 md:w-64 md:h-64 object-cover"
+                className="aspect-square shadow-lg border-2 border-slate-700 w-full h-full md:w-80 md:h-80 object-cover"
               />
             </div>
             <div className="w-full lg:w-8/12 order-2 lg:order-1">
