@@ -70,9 +70,9 @@ export default function App() {
               />
             </div>
             <div className="w-full lg:w-8/12 order-2 lg:order-1">
-              <h4 className="text-xl md:text-2xl font-medium leading-relaxed text-slate-100">
-                Senior AI Development Expert with 14+ years of experience building high-performance web solutions for businesses of all sizes, from agile startups to enterprise corporations.
-              </h4>
+              <h3 className="text-xl md:text-2xl font-medium leading-relaxed text-slate-100 mb-3">
+                Senior Full Stack Developer and AI-Assisted Engineer with over 12 years of experience delivering scalable enterprise solutions across diverse sectors.
+              </h3>
 
               <div className="my-6 border-t border-slate-700/60 w-full"></div>
 

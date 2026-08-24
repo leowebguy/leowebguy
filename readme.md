@@ -1,4 +1,4 @@
-## Senior AI Development Expert with 14+ years of experience building high-performance web solutions for businesses of all sizes, from agile startups to enterprise corporations.
+## Senior Full Stack Developer and AI-Assisted Engineer with over 12 years of experience delivering scalable enterprise solutions across diverse sectors.
 
 &nbsp;
 

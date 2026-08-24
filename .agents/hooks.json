@@ -3,7 +3,7 @@
     "Stop": [
       {
         "type": "command",
-        "command": "node .agents/telemetry.js",
+        "command": "node ./telemetry.js",
         "timeout": 5
       }
     ]
