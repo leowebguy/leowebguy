@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { X } from 'lucide-react';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { ContactFormData } from '../types';
-import { sendContactEmail } from '../services/email';
+import { sendEmail } from '../services/email';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -15,6 +15,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
     email: '',
     phone: '',
     msg: '',
+    website_url: '',
   });
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -40,13 +41,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
       }
     }
 
-    const result = await sendContactEmail({
+    const result = await sendEmail({
       ...formState,
       ...(recaptchaToken ? { recaptchaToken } : {}),
     });
 
     if (result.success) {
-      setFormState({ name: '', email: '', phone: '', msg: '' });
+      setFormState({ name: '', email: '', phone: '', msg: '', website_url: '' });
       setStatus('success');
     } else {
       setStatus('error');
@@ -100,6 +101,16 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 value={formState.phone}
                 onChange={handleInputChange}
               />
+              {/* Honeypot field (hidden from users, bot trap) */}
+              <input
+                type="text"
+                name="website_url"
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+                value={formState.website_url || ''}
+                onChange={handleInputChange}
+              />
               <textarea
                 name="msg"
                 className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all resize-none"
@@ -139,5 +150,3 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
     </div>
   );
 };
-
-

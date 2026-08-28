@@ -13,30 +13,27 @@ The service connects to an email dispatch microservice hosted on DigitalOcean Fu
 
 ## 🔑 Environment Variables
 
-The service uses the following Vite environment variables (prefixed with `VITE_`) for its configuration. If not defined, the service falls back to default values:
+The service uses the following Vite environment variables (prefixed with `VITE_`) for its configuration. These variables must be defined in your `.env` configuration file without default fallback values inside the code:
 
 ### 1. `VITE_EMAIL_API_URL`
 * **Description:** The endpoint URL of the HTTP microservice responsible for dispatching emails.
-* **Default Value (Fallback):** `https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-86527741-6118-4953-a5b7-46c827b1a71a/email/send`
 * **Example `.env` Configuration:**
   ```env
-  VITE_EMAIL_API_URL=https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-86527741-6118-4953-a5b7-46c827b1a71a/email/send
+  VITE_EMAIL_API_URL=https://resend-mailer-app-i2w6i.ondigitalocean.app/email/send
   ```
 
 ### 2. `VITE_EMAIL_API_KEY`
-* **Description:** The secret API key required for authentication with the microservice. It is sent both in the `X-API-Key` header and in the request payload.
-* **Default Value (Fallback):** `935f2c4b-540a-4a70-a3e7-248e898078f7`
+* **Description:** The secret API key required for authentication with the microservice. It is sent both in the `X-API-Key` header and in the request body as `__header_x_api_key`.
 * **Example `.env` Configuration:**
   ```env
   VITE_EMAIL_API_KEY=your-api-token-here
   ```
 
 ### 3. `VITE_EMAIL_TO`
-* **Description:** The administrative email address that receives notifications for new contact form submissions.
-* **Default Value (Fallback):** `leowebguy@gmail.com`
+* **Description:** The administrative email address that receives notifications for new requests submitted on the site.
 * **Example `.env` Configuration:**
   ```env
-  VITE_EMAIL_TO=leowebguy@gmail.com
+  VITE_EMAIL_TO=lemmleoncio@gmail.com
   ```
 
 ---
@@ -45,77 +42,89 @@ The service uses the following Vite environment variables (prefixed with `VITE_`
 
 When submitting emails from the website form, acquire a reCAPTCHA token using `react-google-recaptcha-v3` (`useGoogleReCaptcha()`) and pass `recaptchaToken` to the send email function:
 
-```typescript
+```javascript
 // Using react-google-recaptcha-v3 hook in components:
 const { executeRecaptcha } = useGoogleReCaptcha();
-const recaptchaToken = executeRecaptcha ? await executeRecaptcha('submit') : undefined;
+const recaptchaToken = executeRecaptcha ? await executeRecaptcha('contact_form') : undefined;
 
-await sendContactEmail({
-  name: 'John Doe',
-  email: 'john@example.com',
-  phone: '555-123-4567',
-  msg: 'Hello, I need assistance with a project.',
-  recaptchaToken
+const response = await fetch(API_URL, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-API-Key': API_KEY,
+  },
+  body: JSON.stringify({
+    to,
+    subject,
+    html,
+    replyTo,
+    reply_to,
+    recaptchaToken,
+    __recaptcha_token: recaptchaToken,
+    __header_x_api_key: API_KEY,
+  }),
 });
 ```
 
 ---
 
-## 🛠️ Exported Functions
+## 🛠️ Exported Functions & Heuristics
 
-### 1. `sendEmail(params: EmailParams): Promise<EmailResponse>`
-Low-level function for sending generic emails.
+### 1. `sendEmail`
+Main entrypoint for sending email notifications. Orchestrates form data validation, silent anti-spam filtering, and sends styled emails to the admin recipient (`VITE_EMAIL_TO`).
 
 ```typescript
 import { sendEmail } from '@/services/email';
 
-await sendEmail({
-  to: 'recipient@email.com',
-  subject: 'Email Subject',
-  html: '<p>HTML Content</p>',
-  replyTo: 'contact@example.com',
-  recaptchaToken: 'token' // Optional
+const result = await sendEmail({
+  name: 'John Doe',
+  email: 'john.doe@gmail.com',
+  phone: '(555) 019-9234',
+  msg: 'I would like to inquire about your freelance availability.',
+  recaptchaToken: 'recaptcha-token-here'
 });
 ```
 
-### 2. `sendContactEmail(contactData): Promise<EmailResponse>`
-High-level function for sending contact form submissions directly to `VITE_EMAIL_TO` (`leowebguy@gmail.com`) with styled HTML output.
-
-```typescript
-import { sendContactEmail } from '@/services/email';
-
-await sendContactEmail({
-  name: 'Sender Name',
-  email: 'sender@email.com',
-  phone: '123-456-7890',
-  msg: 'Message content',
-  recaptchaToken: 'token'
-});
-```
-
-* **Parameter Interfaces (`src/types.ts`):**
+* **Data Interface (`ContactFormData` in `src/types.ts`):**
   ```typescript
-  export interface EmailParams {
-    to: string;
-    subject: string;
-    html: string;
-    replyTo?: string;
+  export interface ContactFormData {
+    name: string;
+    email: string;
+    phone?: string;
+    msg: string;
+    website_url?: string; // Honeypot field (must be hidden in UI)
     recaptchaToken?: string;
-  }
-
-  export interface EmailResponse {
-    success: boolean;
-    data?: any;
-    error?: string;
   }
   ```
 
 ---
 
+### 2. Heuristic Anti-Spam Protections
+
+To protect forms from automated bots and spammers, the email service evaluates submissions using the following heuristic functions before sending any requests:
+
+#### `isDotStuffedGmail(email: string): boolean`
+Detects gmail addresses containing 4 or more dots in their local username part (e.g. `t.ap.af.ag.uf.iki.5.2@gmail.com`). Spammers commonly abuse Gmail's ignore-dot routing behavior.
+
+#### `isHighEntropyName(name: string): boolean`
+Detects random name values (e.g. `xIIodPSxdQiXLDKSK`) using a Shannon Entropy calculation on alpha characters (threshold `> 3.65`) and consonant cluster checking (6+ consecutive consonants).
+
+#### `isSpamSubmission(data: ContactFormData): { isSpam: boolean; reason?: string }`
+Runs all checks in order:
+1. **Honeypot Trap:** Checks if the hidden `website_url` input field contains any value.
+2. **Dot-stuffed Gmail Pattern:** Evaluates the email using `isDotStuffedGmail`.
+3. **High-Entropy Name:** Evaluates the name using `isHighEntropyName`.
+
+If spam is detected, submissions are silently dropped with a warning logged in console, returning a mock success response so spammers remain unaware.
+
+---
+
 ## 📧 Email Layout and Templates
 
-The generated contact email template uses clean inline styling:
-- **Heading:** Novo Formulário de Contato (`#333`)
-- **Container / Message Box:** Background `#f9f9f9`, border left `#28a745`
-- **Typography:** Arial, sans-serif, `1.6` line-height
-
+The generated HTML emails use premium inline styling matching the brand design guidelines (`agents.md`):
+- **Primary Header Gradient:** Slate-900 to Slate-800 (`linear-gradient(135deg, #0f172a 0%, #1e293b 100%)`)
+- **Body Background:** `#f4f7fb`
+- **Container Background:** `#ffffff`
+- **Primary Text:** `#111111`
+- **Link Accent Color:** `#10b981` (Emerald-500)
+- **Typography:** Arial, Helvetica, and sans-serif fonts.

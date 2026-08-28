@@ -7,20 +7,13 @@ export interface Technology {
 export interface ContactFormData {
   name: string;
   email: string;
-  phone: string;
+  phone?: string;
   msg: string;
-}
-
-export interface EmailParams {
-  to: string;
-  subject: string;
-  html: string;
-  replyTo?: string;
+  website_url?: string;
   recaptchaToken?: string;
 }
 
 export interface EmailResponse {
   success: boolean;
-  data?: any;
-  error?: string;
+  message: string;
 }
