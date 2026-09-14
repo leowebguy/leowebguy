@@ -43,3 +43,21 @@ jobs:
           path: './dist'
 
       - uses: actions/deploy-pages@v5
+
+      - run: |
+          curl -X POST "https://console.leowebguy.com/api/workflows" \
+            -H "Authorization: Bearer ${{ secrets.CONSOLE_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "id": "${{ github.run_id }}",
+              "workflowName": "${{ github.workflow }}",
+              "repository": "${{ github.repository }}",
+              "branch": "${{ github.ref_name }}",
+              "event": "${{ github.event_name }}",
+              "status": "completed",
+              "conclusion": "${{ job.status }}",
+              "commitSha": "${{ github.sha }}",
+              "actor": "${{ github.actor }}",
+              "htmlUrl": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+              "runNumber": ${{ github.run_number }}
+            }'
