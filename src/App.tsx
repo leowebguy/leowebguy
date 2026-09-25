@@ -9,117 +9,123 @@ import { Technology } from './types';
 const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_KEY || '';
 
 const technologies: Technology[] = [
-  { name: 'PHP', icon: 'php.svg' },
-  { name: 'Craft CMS', icon: 'craftcms.svg' },
-  { name: 'Laravel', icon: 'laravel.svg' },
-  { name: 'Yii', icon: 'yii.svg' },
-  { name: 'Symfony', icon: 'symfony.svg' },
-  { name: 'Shopify', icon: 'shopify.svg' },
-  { name: 'WordPress', icon: 'wp.svg' },
-  { name: 'divider1', isDivider: true },
-  { name: 'Docker', icon: 'docker.svg' },
-  { name: 'Linux', icon: 'linux.svg' },
-  { name: 'Ubuntu', icon: 'ubuntu.svg' },
-  { name: 'AWS', icon: 'aws.svg' },
-  { name: 'Cloudflare', icon: 'cloudflare.svg' },
-  { name: 'Digital Ocean', icon: 'do.svg' },
-  { name: 'Google Cloud', icon: 'googlecloud.svg' },
-  { name: 'Github', icon: 'github.svg' },
-  { name: 'MySQL', icon: 'mysql.svg' },
-  { name: 'PostgreSQL', icon: 'postgre.svg' },
-  { name: 'MariaDB', icon: 'mariadb.svg' },
-  { name: 'Redis', icon: 'redis.svg' },
-  { name: 'divider2', isDivider: true },
-  { name: 'NodeJS', icon: 'node.svg' },
-  { name: 'NPM', icon: 'npm.svg' },
-  { name: 'JavaScript', icon: 'js.svg' },
-  { name: 'NuxtJS', icon: 'nuxt.svg' },
-  { name: 'VueJs', icon: 'vue.svg' },
-  { name: 'Veutify', icon: 'veutify.svg' },
-  { name: 'ReactJs', icon: 'react.svg' },
-  { name: 'GraphQL', icon: 'graphql.svg' },
-  { name: 'AlpineJs', icon: 'alpine.svg' },
-  { name: 'Webpack', icon: 'webpack.svg' },
-  { name: 'Vite', icon: 'vite.svg' },
-  { name: 'Sass', icon: 'sass.svg' },
-  { name: 'Bootstrap', icon: 'bootstrap.svg' },
-  { name: 'Tailwind', icon: 'tailwind.svg' },
+    { name: 'PHP', icon: 'php.svg' },
+    { name: 'Craft CMS', icon: 'craftcms.svg' },
+    { name: 'Laravel', icon: 'laravel.svg' },
+    { name: 'Yii', icon: 'yii.svg' },
+    { name: 'Symfony', icon: 'symfony.svg' },
+    { name: 'Shopify', icon: 'shopify.svg' },
+    { name: 'WordPress', icon: 'wp.svg' },
+    { name: 'Antigravity', icon: 'antigravity.svg' },
+    { name: 'Claude', icon: 'claude.svg' },
+    { name: 'Cursor', icon: 'cursor.svg' },
+    { name: 'OpenAI', icon: 'openai.svg' },
+    { name: 'divider1', isDivider: true },
+    { name: 'Docker', icon: 'docker.svg' },
+    { name: 'Linux', icon: 'linux.svg' },
+    { name: 'Ubuntu', icon: 'ubuntu.svg' },
+    { name: 'AWS', icon: 'aws.svg' },
+    { name: 'Cloudflare', icon: 'cloudflare.svg' },
+    { name: 'Digital Ocean', icon: 'do.svg' },
+    { name: 'Google Cloud', icon: 'googlecloud.svg' },
+    { name: 'Github', icon: 'github.svg' },
+    { name: 'MySQL', icon: 'mysql.svg' },
+    { name: 'PostgreSQL', icon: 'postgre.svg' },
+    { name: 'MariaDB', icon: 'mariadb.svg' },
+    { name: 'Redis', icon: 'redis.svg' },
+    { name: 'divider2', isDivider: true },
+    { name: 'NodeJS', icon: 'node.svg' },
+    { name: 'NPM', icon: 'npm.svg' },
+    { name: 'JavaScript', icon: 'js.svg' },
+    { name: 'Typescript', icon: 'typescript.svg' },
+    { name: 'NuxtJS', icon: 'nuxt.svg' },
+    { name: 'VueJs', icon: 'vue.svg' },
+    { name: 'Veutify', icon: 'veutify.svg' },
+    { name: 'ReactJs', icon: 'react.svg' },
+    { name: 'GraphQL', icon: 'graphql.svg' },
+    { name: 'AlpineJs', icon: 'alpine.svg' },
+    { name: 'Webpack', icon: 'webpack.svg' },
+    { name: 'Vite', icon: 'vite.svg' },
+    { name: 'Sass', icon: 'sass.svg' },
+    { name: 'Bootstrap', icon: 'bootstrap.svg' },
+    { name: 'Tailwind', icon: 'tailwind.svg' },
 ];
 
 export default function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    // Open modal if URL query param contains 'contact'
-    const query = new URLSearchParams(window.location.search);
-    if (query && query.has('contact')) {
-      setIsModalOpen(true);
-    }
-  }, []);
+    useEffect(() => {
+        // Open modal if URL query param contains 'contact'
+        const query = new URLSearchParams(window.location.search);
+        if (query && query.has('contact')) {
+            setIsModalOpen(true);
+        }
+    }, []);
 
-  return (
-    <GoogleReCaptchaProvider reCaptchaKey={RECAPTCHA_SITE_KEY}>
-      <div className="container mx-auto px-4 my-6 md:my-12 max-w-5xl">
-        <div className="p-6 md:p-10 bg-slate-800/80 border border-slate-700/80 rounded-2xl shadow-2xl backdrop-blur-sm">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-            <div className="w-full lg:w-4/12 order-1 lg:order-2 flex justify-center md:justify-end">
-              <img
-                src="/images/leo.jpg"
-                alt="leowebguy"
-                className="aspect-square shadow-lg border-2 border-slate-700 w-full h-full md:w-80 md:h-80 object-cover"
-              />
+    return (
+        <GoogleReCaptchaProvider reCaptchaKey={RECAPTCHA_SITE_KEY}>
+            <div className="container mx-auto px-4 my-6 md:my-12 max-w-5xl">
+                <div className="p-6 md:p-10 bg-slate-800/80 border border-slate-700/80 rounded-2xl shadow-2xl backdrop-blur-sm">
+                    <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+                        <div className="w-full lg:w-4/12 order-1 lg:order-2 flex justify-center md:justify-end">
+                            <img
+                                src="/images/leo.jpg"
+                                alt="leowebguy"
+                                className="aspect-square shadow-lg border-2 border-slate-700 w-full h-full md:w-80 md:h-80 object-cover"
+                            />
+                        </div>
+                        <div className="w-full lg:w-8/12 order-2 lg:order-1">
+                            <h3 className="text-xl md:text-2xl font-medium leading-relaxed text-slate-100 mb-3">
+                                Senior Full Stack Developer and AI-Assisted Engineer with over 12 years of experience delivering
+                                scalable enterprise solutions across diverse sectors.
+                            </h3>
+
+                            <div className="my-6 border-t border-slate-700/60 w-full"></div>
+
+                            <TechStack technologies={technologies}/>
+
+                            <div className="my-6 border-t border-slate-700/60 w-full"></div>
+
+                            <div className="flex flex-row items-center gap-3">
+                                <a
+                                    href="//github.com/leowebguy"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline-flex items-center justify-center w-11 h-11 rounded-lg border border-slate-600 bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white hover:border-slate-500 transition-colors"
+                                >
+                                    <GithubIcon className="w-5 h-5"/>
+                                </a>
+                                <a
+                                    href="//linkedin.com/in/leowebguy"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline-flex items-center justify-center w-11 h-11 rounded-lg border border-slate-600 bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white hover:border-slate-500 transition-colors"
+                                >
+                                    <LinkedinIcon className="w-5 h-5"/>
+                                </a>
+                                <a
+                                    href="//stackoverflow.com/users/3058927/leo-leoncio"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline-flex items-center justify-center w-11 h-11 rounded-lg border border-slate-600 bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white hover:border-slate-500 transition-colors"
+                                >
+                                    <StackOverflowIcon className="w-5 h-5"/>
+                                </a>
+                                <button
+                                    type="button"
+                                    onClick={() => setIsModalOpen(true)}
+                                    className="inline-flex items-center justify-center w-11 h-11 rounded-lg bg-emerald-600 text-white hover:bg-emerald-500 transition-colors shadow-md"
+                                >
+                                    <Mail className="w-5 h-5"/>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="w-full lg:w-8/12 order-2 lg:order-1">
-              <h3 className="text-xl md:text-2xl font-medium leading-relaxed text-slate-100 mb-3">
-                Senior Full Stack Developer and AI-Assisted Engineer with over 12 years of experience delivering scalable enterprise solutions across diverse sectors.
-              </h3>
 
-              <div className="my-6 border-t border-slate-700/60 w-full"></div>
-
-              <TechStack technologies={technologies} />
-
-              <div className="my-6 border-t border-slate-700/60 w-full"></div>
-
-              <div className="flex flex-row items-center gap-3">
-                <a
-                  href="//github.com/leowebguy"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center w-11 h-11 rounded-lg border border-slate-600 bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white hover:border-slate-500 transition-colors"
-                >
-                  <GithubIcon className="w-5 h-5" />
-                </a>
-                <a
-                  href="//linkedin.com/in/leowebguy"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center w-11 h-11 rounded-lg border border-slate-600 bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white hover:border-slate-500 transition-colors"
-                >
-                  <LinkedinIcon className="w-5 h-5" />
-                </a>
-                <a
-                  href="//stackoverflow.com/users/3058927/leo-leoncio"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center w-11 h-11 rounded-lg border border-slate-600 bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white hover:border-slate-500 transition-colors"
-                >
-                  <StackOverflowIcon className="w-5 h-5" />
-                </a>
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(true)}
-                  className="inline-flex items-center justify-center w-11 h-11 rounded-lg bg-emerald-600 text-white hover:bg-emerald-500 transition-colors shadow-md"
-                >
-                  <Mail className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-    </GoogleReCaptchaProvider>
-  );
+            <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
+        </GoogleReCaptchaProvider>
+    );
 }
 

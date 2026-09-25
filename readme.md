@@ -9,6 +9,10 @@
 ![Symfony](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/symfony.svg "Symfony")
 ![Shopify](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/shopify.svg "Shopify")
 ![WordPress](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/wp.svg "WordPress")
+![Antigravity](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/antigravity.svg "Antigravity")
+![Claude](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/claude.svg "Claude")
+![Cursor](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/cursor.svg "Cursor")
+![OpenAI](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/openai.svg "OpenAI")
 
 ![Docker](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/docker.svg "Docker")
 ![Linux](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/linux.svg "Linux")
@@ -17,7 +21,7 @@
 ![Cloudflare](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/cloudflare.svg "Cloudflare")
 ![Digital Ocean](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/do.svg "Digital Ocean")
 ![Google Cloud](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/googlecloud.svg "Google Cloud")
-![Github](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/github.svg "Github")
+
 ![MySQL](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/mysql.svg "MySQL")
 ![PostgreSQL](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/postgre.svg "PostgreSQL")
 ![MariaDB](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/mariadb.svg "MariaDB")
@@ -26,6 +30,7 @@
 ![NodeJS](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/node.svg "NodeJS")
 ![NPM](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/npm.svg "NPM")
 ![JavaScript](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/js.svg "JavaScript")
+![Typescript](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/typescript.svg "Typescript")
 ![NuxtJS](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/nuxt.svg "NuxtJS")
 ![VueJs](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/vue.svg "Vue")
 ![Veutify](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/veutify.svg "Veutify")
@@ -34,6 +39,8 @@
 ![AlpineJs](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/alpine.svg "Alpine")
 ![Webpack](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/webpack.svg "Webpack")
 ![Vite](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/vite.svg "Vite")
+
+![Github](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/github.svg "Github")
 ![Sass](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/sass.svg "Sass")
 ![Bootstrap](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/bootstrap.svg "Bootstrap")
 ![Tailwind](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/tailwind.svg "Tailwind")

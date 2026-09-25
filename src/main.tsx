@@ -5,10 +5,10 @@ import './index.css';
 
 const container = document.getElementById('root');
 if (container) {
-  const root = createRoot(container);
-  root.render(
-    <StrictMode>
-      <App />
-    </StrictMode>
-  );
+    const root = createRoot(container);
+    root.render(
+        <StrictMode>
+            <App/>
+        </StrictMode>
+    );
 }
