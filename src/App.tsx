@@ -16,7 +16,6 @@ const technologies: Technology[] = [
     { name: 'Symfony', icon: 'symfony.svg' },
     { name: 'Shopify', icon: 'shopify.svg' },
     { name: 'WordPress', icon: 'wp.svg' },
-    { name: 'Antigravity', icon: 'antigravity.svg' },
     { name: 'Claude', icon: 'claude.svg' },
     { name: 'Cursor', icon: 'cursor.svg' },
     { name: 'OpenAI', icon: 'openai.svg' },

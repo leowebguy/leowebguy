@@ -9,7 +9,6 @@
 ![Symfony](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/symfony.svg "Symfony")
 ![Shopify](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/shopify.svg "Shopify")
 ![WordPress](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/wp.svg "WordPress")
-![Antigravity](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/antigravity.svg "Antigravity")
 ![Claude](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/claude.svg "Claude")
 ![Cursor](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/cursor.svg "Cursor")
 ![OpenAI](https://raw.githubusercontent.com/leowebguy/leowebguy/refs/heads/main/public/svg/openai.svg "OpenAI")
